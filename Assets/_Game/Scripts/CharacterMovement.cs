@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Collections;
 using static GameInput;
 
-public class PlayerMovement : MonoBehaviour
+public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] private float jumpHeight = 2f;
     [SerializeField] private float jumpDuration = 0.5f; 
@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private Queue<Vector2> movementQueue = new Queue<Vector2>();
     private bool jumpCompleted = false;
     private bool isExecutingMovements;
+    private bool isActivated = true;
     private Vector2 targetPosition;
     private void Start()
     {
@@ -23,15 +24,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void GameInput_OnMovementKeyPressed(object sender, OnMovementKeyPressedEventArgs e)
     {
+        if (!isActivated) return;
         EnqueueMovement(e.direction);
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartMovementExecution();
-        }
     }
     private IEnumerator JumpToTile(Vector2 direction)
     {
@@ -58,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
     {
         movementQueue.Enqueue(direction);
     }
-    private void StartMovementExecution()
+    public void StartMovementExecution()
     {
         if (!isExecutingMovements)
         {
@@ -76,5 +70,13 @@ public class PlayerMovement : MonoBehaviour
         }
 
         isExecutingMovements = false;
+    }
+    public void Activate()
+    {
+        isActivated = true;
+    }
+    public void Deactivate()
+    {
+        isActivated = false;
     }
 }
