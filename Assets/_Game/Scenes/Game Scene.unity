@@ -611,6 +611,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpHeight: 0.2
   jumpDuration: 0.2
+  shakeDuration: 0.2
+  shakeStrengh: 0.1
+  shakeVibrato: 10
+  shakeRandomness: 0.5
   tilemap: {fileID: 1503001506}
   gameInput: {fileID: 299384366}
 --- !u!114 &896371582
@@ -803,7 +807,7 @@ Transform:
   m_GameObject: {fileID: 1407331513}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.2, z: 0}
+  m_LocalPosition: {x: 0, y: 0.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -819,7 +823,7 @@ Animator:
   m_GameObject: {fileID: 1407331513}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d367d408107018147815f4712e8d5949, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3617a16048d7a074fadb4c3d94f97a61, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -871,7 +875,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 458763393, guid: 8b168f5cd2a29194f85f5aaececc3e5f, type: 3}
+  m_Sprite: {fileID: -1418538645, guid: fcbab2aaf9344984cb4dca45974d1ad6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1781,6 +1785,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpHeight: 0.2
   jumpDuration: 0.2
+  shakeDuration: 0.2
+  shakeStrengh: 0.5
+  shakeVibrato: 10
+  shakeRandomness: 0.5
   tilemap: {fileID: 1503001506}
   gameInput: {fileID: 299384366}
 --- !u!4 &1736897100
