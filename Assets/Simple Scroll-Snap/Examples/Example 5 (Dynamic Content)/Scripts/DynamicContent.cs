@@ -2,6 +2,7 @@
 // Copyright (c) Daniel Lochner
 
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,37 +12,38 @@ namespace DanielLochner.Assets.SimpleScrollSnap
     {
         #region Fields
         [SerializeField] private GameObject arrowPrefab;
-        [SerializeField] private Toggle togglePrefab;
-        [SerializeField] private ToggleGroup toggleGroup;
-        [SerializeField] private InputField addInputField, removeInputField;
         [SerializeField] private SimpleScrollSnap scrollSnap;
         [SerializeField] private Sprite[] arrowSpriteArray;
         [SerializeField] private GameInput gameInput;
+        [SerializeField] private Character character;
 
+        private Queue<GameObject> arrowPrefabList = new Queue<GameObject>();
         private Vector2 arrowDirection;
-        private float toggleWidth;
         #endregion
 
         #region Methods
         private void Awake()
         {
-            toggleWidth = (togglePrefab.transform as RectTransform).sizeDelta.x * (Screen.width / 2048f);
             gameInput.OnMovementKeyPressed += GameInput_OnMovementKeyPressed;
+            character.GetCharacterMovement().OnCharacterMoved += CharacterMovement_OnCharacterMoved;
+        }
+
+        private void CharacterMovement_OnCharacterMoved(object sender, EventArgs e)
+        {
+            RemoveFromBack();
         }
 
         private void GameInput_OnMovementKeyPressed(object sender, GameInput.OnMovementKeyPressedEventArgs e)
         {
-            arrowDirection = e.direction;
-            Add(0);
+            if (GameManager.Instance.GetSelectedCharacter() == character)
+            {
+                arrowDirection = e.direction;
+                Add(0);
+            }    
         }
 
         public void Add(int index)
         {
-            // Pagination
-            Toggle toggle = Instantiate(togglePrefab, scrollSnap.Pagination.transform.position + new Vector3(toggleWidth * (scrollSnap.NumberOfPanels + 1), 0, 0), Quaternion.identity, scrollSnap.Pagination.transform);
-            toggle.group = toggleGroup;
-            scrollSnap.Pagination.transform.position -= new Vector3(toggleWidth / 2f, 0, 0);
-
             // Panel
             if (arrowDirection == Vector2.up)
             {
@@ -59,11 +61,7 @@ namespace DanielLochner.Assets.SimpleScrollSnap
             {
                 arrowPrefab.GetComponent<Image>().sprite = arrowSpriteArray[3];
             }
-            scrollSnap.Add(arrowPrefab, index);
-        }
-        public void AddAtIndex()
-        {
-            Add(Convert.ToInt32(addInputField.text));
+            arrowPrefabList.Enqueue(scrollSnap.Add(arrowPrefab, index));
         }
         public void AddToFront()
         {
@@ -79,16 +77,11 @@ namespace DanielLochner.Assets.SimpleScrollSnap
             if (scrollSnap.NumberOfPanels > 0)
             {
                 // Pagination
-                DestroyImmediate(scrollSnap.Pagination.transform.GetChild(scrollSnap.NumberOfPanels - 1).gameObject);
-                scrollSnap.Pagination.transform.position += new Vector3(toggleWidth / 2f, 0, 0);
+                //DestroyImmediate(scrollSnap.Pagination.transform.GetChild(scrollSnap.NumberOfPanels - 1).gameObject);
 
                 // Panel
                 scrollSnap.Remove(index);
             }
-        }
-        public void RemoveAtIndex()
-        {
-            Remove(Convert.ToInt32(removeInputField.text));
         }
         public void RemoveFromFront()
         {

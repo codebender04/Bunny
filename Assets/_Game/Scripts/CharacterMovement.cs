@@ -5,9 +5,12 @@ using System.Collections.Generic;
 using System.Collections;
 using static GameInput;
 using Unity.VisualScripting;
+using System;
 
 public class CharacterMovement : MonoBehaviour
 {
+    public event EventHandler OnCharacterMoved;
+
     [SerializeField] private float jumpHeight = 2f;
     [SerializeField] private float jumpDuration = 0.5f; 
     [SerializeField] private float shakeDuration = 0.5f;
@@ -40,6 +43,8 @@ public class CharacterMovement : MonoBehaviour
     }
     public IEnumerator JumpToTile(Vector2 direction)
     {
+        OnCharacterMoved?.Invoke(this, EventArgs.Empty);
+
         jumpCompleted = false;
         currentCell = tilemap.WorldToCell(transform.position);
         Vector2 targetPosition = (Vector2)transform.position + direction;

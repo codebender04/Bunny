@@ -16,4 +16,8 @@ public class Character : MonoBehaviour
             characterMovement.Deactivate();
         }
     }
+    public CharacterMovement GetCharacterMovement()
+    {
+        return characterMovement;
+    }
 }

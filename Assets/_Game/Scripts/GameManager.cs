@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (Character character in characterArray)
         {
-            character.GetComponent<CharacterMovement>().StartMovementExecution();
+            character.GetCharacterMovement().StartMovementExecution();
         }
     }
 
