@@ -10,13 +10,15 @@ using System;
 public class CharacterMovement : MonoBehaviour
 {
     public event EventHandler OnCharacterMoved;
+    public event EventHandler OnCharacterFinishMovement;
 
     [SerializeField] private float jumpHeight = 2f;
     [SerializeField] private float jumpDuration = 0.5f; 
     [SerializeField] private float shakeDuration = 0.5f;
     [SerializeField] private float shakeStrength = 0.1f;
     [SerializeField] private int shakeVibrato = 10;
-    [SerializeField] private Tilemap tilemap;
+    [SerializeField] private Tilemap walkableTilemap;
+    [SerializeField] private Tile goalTile;
     [SerializeField] private GameInput gameInput;
 
     private static Dictionary<Vector3Int, CharacterMovement> occupiedCells = new();
@@ -32,7 +34,7 @@ public class CharacterMovement : MonoBehaviour
     {
         gameInput.OnMovementKeyPressed += GameInput_OnMovementKeyPressed;
 
-        currentCell = tilemap.WorldToCell(transform.position);
+        currentCell = walkableTilemap.WorldToCell(transform.position);
         occupiedCells.Add(currentCell, this);
     }
 
@@ -46,12 +48,12 @@ public class CharacterMovement : MonoBehaviour
         OnCharacterMoved?.Invoke(this, EventArgs.Empty);
 
         jumpCompleted = false;
-        currentCell = tilemap.WorldToCell(transform.position);
+        currentCell = walkableTilemap.WorldToCell(transform.position);
         Vector2 targetPosition = (Vector2)transform.position + direction;
-        targetCell = tilemap.WorldToCell(targetPosition);
+        targetCell = walkableTilemap.WorldToCell(targetPosition);
 
         // Check if the target cell is available
-        if (!occupiedCells.ContainsKey(targetCell) && tilemap.HasTile(targetCell))
+        if (!occupiedCells.ContainsKey(targetCell) && IsWalkable(targetCell))
         {
             // Reserve the target cell
             occupiedCells[targetCell] = this;
@@ -98,23 +100,20 @@ public class CharacterMovement : MonoBehaviour
 
         // Check if the next move is to an unoccupied, valid tile
         Vector2 nextMove = movementQueue.Peek();
-        Vector3Int potentialTargetCell = tilemap.WorldToCell((Vector2)transform.position + nextMove);
-        if (!occupiedCells.ContainsKey(potentialTargetCell) && tilemap.HasTile(potentialTargetCell))
+        Vector3Int potentialTargetCell = walkableTilemap.WorldToCell((Vector2)transform.position + nextMove);
+        if (!occupiedCells.ContainsKey(potentialTargetCell) && IsWalkable(potentialTargetCell))
         {
             return true;
         }
         return false;
     }
+    private bool IsWalkable(Vector3Int cellPosition)
+    {
+        return walkableTilemap.HasTile(cellPosition);
+    }
     private void EnqueueMovement(Vector2 direction)
     {
         movementQueue.Enqueue(direction);
-    }
-    public void StartMovementExecution()
-    {
-        if (!isExecutingMovements)
-        {
-            StartCoroutine(nameof(ExecuteMovements));
-        }
     }
     private IEnumerator ExecuteMovements()
     {
@@ -127,6 +126,19 @@ public class CharacterMovement : MonoBehaviour
         }
 
         isExecutingMovements = false;
+
+        OnCharacterFinishMovement?.Invoke(this, EventArgs.Empty);
+    }
+    public void StartMovementExecution()
+    {
+        if (!isExecutingMovements)
+        {
+            StartCoroutine(nameof(ExecuteMovements));
+        }
+    }
+    public bool IsAtGoal()
+    {
+        return walkableTilemap.GetTile(targetCell) == goalTile;
     }
     public void Activate()
     {

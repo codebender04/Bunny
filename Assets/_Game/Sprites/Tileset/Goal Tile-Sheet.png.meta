@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8b168f5cd2a29194f85f5aaececc3e5f
+guid: 373d952f968d49349ae1c3414663d676
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 1024
+    maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bunny-Sheet_0
+      name: Goal Tile-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f744d8786fe223544ad1b70dde16c5f6
-      internalID: -1918429876
+      spriteID: 2122e03ae63b13a45a2cfccf89c17362
+      internalID: 194506437
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bunny-Sheet_1
+      name: Goal Tile-Sheet_1
       rect:
         serializedVersion: 2
         x: 16
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aeb6aaa666783194a9ea3209382f43c8
-      internalID: -1837162027
+      spriteID: 90102904f5ab6da43a658c2e5ba547e7
+      internalID: -236395464
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bunny-Sheet_2
+      name: Goal Tile-Sheet_2
       rect:
         serializedVersion: 2
         x: 32
@@ -153,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c059b6dd1f92de142a3b379ddea568d7
-      internalID: 574528450
+      spriteID: a0e760b2011a75749869debea93b5a05
+      internalID: -493329507
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bunny-Sheet_3
+      name: Goal Tile-Sheet_3
       rect:
         serializedVersion: 2
         x: 48
@@ -174,8 +174,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8db221c59878922418c2e86ca103a351
-      internalID: 688405654
+      spriteID: 4d9559781f4ce9f459fb76afae5b016d
+      internalID: 1696637886
       vertices: []
       indices: 
       edges: []
@@ -191,10 +191,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Bunny-Sheet_0: -1918429876
-      Bunny-Sheet_1: -1837162027
-      Bunny-Sheet_2: 574528450
-      Bunny-Sheet_3: 688405654
+      Goal Tile-Sheet_0: 194506437
+      Goal Tile-Sheet_1: -236395464
+      Goal Tile-Sheet_2: -493329507
+      Goal Tile-Sheet_3: 1696637886
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
