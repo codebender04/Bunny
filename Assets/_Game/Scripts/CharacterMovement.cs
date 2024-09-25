@@ -28,6 +28,7 @@ public class CharacterMovement : MonoBehaviour
     private bool isExecutingMovements;
     private bool isActivated = true;
     private Vector2 targetPosition;
+    private Vector2 currentDirection;
     private Vector3Int currentCell;
     private Vector3Int targetCell;
     private void Start()
@@ -55,13 +56,9 @@ public class CharacterMovement : MonoBehaviour
         // Check if the target cell is available
         if (!occupiedCells.ContainsKey(targetCell) && IsWalkable(targetCell))
         {
-            // Reserve the target cell
             occupiedCells[targetCell] = this;
-
-            // Remove the current cell from the occupiedCells map after jumping
             occupiedCells.Remove(currentCell);
 
-            // Perform the jump movement
             transform.DOJump(targetPosition, jumpHeight, 1, jumpDuration).OnComplete(() =>
             {
                 jumpCompleted = true;
@@ -71,6 +68,7 @@ public class CharacterMovement : MonoBehaviour
         {
             occupiedCells[targetCell] = this;
             occupiedCells.Remove(currentCell);
+
             transform.DOJump(targetPosition, jumpHeight, 1, jumpDuration).OnComplete(() =>
             {
                 jumpCompleted = true;
@@ -105,6 +103,10 @@ public class CharacterMovement : MonoBehaviour
         {
             return true;
         }
+        else if (occupiedCells.ContainsKey(potentialTargetCell) && occupiedCells[potentialTargetCell].HasValidMoves())
+        {
+            return true;
+        }
         return false;
     }
     private bool IsWalkable(Vector3Int cellPosition)
@@ -121,8 +123,8 @@ public class CharacterMovement : MonoBehaviour
 
         while (movementQueue.Count > 0)
         {
-            Vector2 direction = movementQueue.Dequeue();
-            yield return JumpToTile(direction);
+            currentDirection = movementQueue.Dequeue();
+            yield return JumpToTile(currentDirection);
         }
 
         isExecutingMovements = false;

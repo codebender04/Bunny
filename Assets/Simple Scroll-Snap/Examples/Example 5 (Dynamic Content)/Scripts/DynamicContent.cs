@@ -17,7 +17,6 @@ namespace DanielLochner.Assets.SimpleScrollSnap
         [SerializeField] private GameInput gameInput;
         [SerializeField] private Character character;
 
-        private Queue<GameObject> arrowPrefabList = new Queue<GameObject>();
         private Vector2 arrowDirection;
         #endregion
 
@@ -61,7 +60,7 @@ namespace DanielLochner.Assets.SimpleScrollSnap
             {
                 arrowPrefab.GetComponent<Image>().sprite = arrowSpriteArray[3];
             }
-            arrowPrefabList.Enqueue(scrollSnap.Add(arrowPrefab, index));
+            scrollSnap.Add(arrowPrefab, index);
         }
         public void AddToFront()
         {

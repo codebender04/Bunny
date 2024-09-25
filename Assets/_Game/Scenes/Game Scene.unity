@@ -151,7 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4724731f0b0e2224dba199039cbffb92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AllCharactersOnGoal: 1
   characterArray:
   - {fileID: 896371582}
   - {fileID: 1736897098}
@@ -850,7 +849,6 @@ MonoBehaviour:
   shakeVibrato: 20
   walkableTilemap: {fileID: 1503001506}
   goalTile: {fileID: 11400000, guid: da9349df3f73c9c41b47d06ca0ec14c9, type: 2}
-  goalCellPosition: {x: 3, y: 0, z: 0}
   gameInput: {fileID: 299384366}
 --- !u!114 &896371582
 MonoBehaviour:
@@ -2139,7 +2137,6 @@ MonoBehaviour:
   shakeVibrato: 20
   walkableTilemap: {fileID: 1503001506}
   goalTile: {fileID: 11400000, guid: c0380dd620a3bc04a87327f2497154e7, type: 2}
-  goalCellPosition: {x: 3, y: -1, z: 0}
   gameInput: {fileID: 299384366}
 --- !u!4 &1736897100
 Transform:
