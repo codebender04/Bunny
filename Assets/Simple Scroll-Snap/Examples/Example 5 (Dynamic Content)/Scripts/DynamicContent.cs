@@ -34,7 +34,7 @@ namespace DanielLochner.Assets.SimpleScrollSnap
 
         private void GameInput_OnMovementKeyPressed(object sender, GameInput.OnMovementKeyPressedEventArgs e)
         {
-            if (GameManager.Instance.GetSelectedCharacter() == character)
+            if (GameManager.Instance.GetSelectedCharacter() == character && !GameManager.Instance.LevelHasEnded())
             {
                 arrowDirection = e.direction;
                 Add(0);

@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Character[] characterArray;
     private int charactersFinishedMovement = 0;
     private Character selectedCharacter;
+    private bool levelHasEnded = false;
 
     private void Awake()
     {
@@ -33,6 +34,8 @@ public class GameManager : MonoBehaviour
 
     private void GameInput_OnLevelRetried(object sender, EventArgs e)
     {
+        levelHasEnded = false;
+        characterArray[0].GetCharacterMovement().Activate();
         LevelManager.Instance.ReloadCurrentLevel();
     }
 
@@ -46,19 +49,14 @@ public class GameManager : MonoBehaviour
             {
                 if (!character.GetCharacterMovement().IsAtGoal())
                 {
+                    DeactivateCharacterMovement();
+                    levelHasEnded = true;
                     OnLevelLost?.Invoke(this, EventArgs.Empty);
                     return;
                 }
             }
             Debug.Log("Finish Level!");
             OnLevelWon?.Invoke(this, EventArgs.Empty);
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.V))
-        {
         }
     }
     private void GameInput_OnStartMovementSequence(object sender, System.EventArgs e)
@@ -68,9 +66,16 @@ public class GameManager : MonoBehaviour
             character.GetCharacterMovement().StartMovementExecution();
         }
     }
-
+    private void DeactivateCharacterMovement()
+    {
+        foreach (Character character in characterArray)
+        {
+            character.GetCharacterMovement().Deactivate();
+        }
+    }
     private void GameInput_OnCharacterSelected(object sender, GameInput.OnCharacterSelectedEventArgs e)
     {
+        if (levelHasEnded) return;
         selectedCharacter = e.selectedCharacter;
         foreach (Character character in characterArray)
         {
@@ -80,5 +85,9 @@ public class GameManager : MonoBehaviour
     public Character GetSelectedCharacter()
     {
         return selectedCharacter;
+    }
+    public bool LevelHasEnded()
+    {
+        return levelHasEnded;
     }
 }
