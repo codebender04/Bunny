@@ -21,7 +21,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private Tile goalTile;
     [SerializeField] private GameInput gameInput;
 
-    private static Dictionary<Vector3Int, CharacterMovement> occupiedCells = new();
+    public static Dictionary<Vector3Int, CharacterMovement> OccupiedCells = new();
 
     private Queue<Vector2> movementQueue = new Queue<Vector2>();
     private bool jumpCompleted = false;
@@ -36,7 +36,7 @@ public class CharacterMovement : MonoBehaviour
         gameInput.OnMovementKeyPressed += GameInput_OnMovementKeyPressed;
 
         currentCell = walkableTilemap.WorldToCell(transform.position);
-        occupiedCells.Add(currentCell, this);
+        OccupiedCells.Add(currentCell, this);
     }
 
     private void GameInput_OnMovementKeyPressed(object sender, OnMovementKeyPressedEventArgs e)
@@ -54,20 +54,20 @@ public class CharacterMovement : MonoBehaviour
         targetCell = walkableTilemap.WorldToCell(targetPosition);
 
         // Check if the target cell is available
-        if (!occupiedCells.ContainsKey(targetCell) && IsWalkable(targetCell))
+        if (!OccupiedCells.ContainsKey(targetCell) && IsWalkable(targetCell))
         {
-            occupiedCells[targetCell] = this;
-            occupiedCells.Remove(currentCell);
+            OccupiedCells[targetCell] = this;
+            OccupiedCells.Remove(currentCell);
 
             transform.DOJump(targetPosition, jumpHeight, 1, jumpDuration).OnComplete(() =>
             {
                 jumpCompleted = true;
             });
         }
-        else if (occupiedCells.ContainsKey(targetCell) && occupiedCells[targetCell].HasValidMoves())
+        else if (OccupiedCells.ContainsKey(targetCell) && OccupiedCells[targetCell].HasValidMoves())
         {
-            occupiedCells[targetCell] = this;
-            occupiedCells.Remove(currentCell);
+            OccupiedCells[targetCell] = this;
+            OccupiedCells.Remove(currentCell);
 
             transform.DOJump(targetPosition, jumpHeight, 1, jumpDuration).OnComplete(() =>
             {
@@ -99,11 +99,11 @@ public class CharacterMovement : MonoBehaviour
         // Check if the next move is to an unoccupied, valid tile
         Vector2 nextMove = movementQueue.Peek();
         Vector3Int potentialTargetCell = walkableTilemap.WorldToCell((Vector2)transform.position + nextMove);
-        if (!occupiedCells.ContainsKey(potentialTargetCell) && IsWalkable(potentialTargetCell))
+        if (!OccupiedCells.ContainsKey(potentialTargetCell) && IsWalkable(potentialTargetCell))
         {
             return true;
         }
-        else if (occupiedCells.ContainsKey(potentialTargetCell) && occupiedCells[potentialTargetCell].HasValidMoves())
+        else if (OccupiedCells.ContainsKey(potentialTargetCell) && OccupiedCells[potentialTargetCell].HasValidMoves())
         {
             return true;
         }

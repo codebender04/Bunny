@@ -80,6 +80,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Retry Level"",
+                    ""type"": ""Button"",
+                    ""id"": ""8868b7d7-b97b-47f8-a2a9-79f2d677c528"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -192,6 +201,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Start Movement Sequence"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3657c1a6-abf3-44bb-8894-7ea7715e5e19"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Retry Level"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -206,6 +226,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_MoveRight = m_Player.FindAction("Move Right", throwIfNotFound: true);
         m_Player_LeftClick = m_Player.FindAction("Left Click", throwIfNotFound: true);
         m_Player_StartMovementSequence = m_Player.FindAction("Start Movement Sequence", throwIfNotFound: true);
+        m_Player_RetryLevel = m_Player.FindAction("Retry Level", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -273,6 +294,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_MoveRight;
     private readonly InputAction m_Player_LeftClick;
     private readonly InputAction m_Player_StartMovementSequence;
+    private readonly InputAction m_Player_RetryLevel;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -283,6 +305,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @MoveRight => m_Wrapper.m_Player_MoveRight;
         public InputAction @LeftClick => m_Wrapper.m_Player_LeftClick;
         public InputAction @StartMovementSequence => m_Wrapper.m_Player_StartMovementSequence;
+        public InputAction @RetryLevel => m_Wrapper.m_Player_RetryLevel;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -310,6 +333,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @StartMovementSequence.started += instance.OnStartMovementSequence;
             @StartMovementSequence.performed += instance.OnStartMovementSequence;
             @StartMovementSequence.canceled += instance.OnStartMovementSequence;
+            @RetryLevel.started += instance.OnRetryLevel;
+            @RetryLevel.performed += instance.OnRetryLevel;
+            @RetryLevel.canceled += instance.OnRetryLevel;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -332,6 +358,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @StartMovementSequence.started -= instance.OnStartMovementSequence;
             @StartMovementSequence.performed -= instance.OnStartMovementSequence;
             @StartMovementSequence.canceled -= instance.OnStartMovementSequence;
+            @RetryLevel.started -= instance.OnRetryLevel;
+            @RetryLevel.performed -= instance.OnRetryLevel;
+            @RetryLevel.canceled -= instance.OnRetryLevel;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -357,5 +386,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnMoveRight(InputAction.CallbackContext context);
         void OnLeftClick(InputAction.CallbackContext context);
         void OnStartMovementSequence(InputAction.CallbackContext context);
+        void OnRetryLevel(InputAction.CallbackContext context);
     }
 }
