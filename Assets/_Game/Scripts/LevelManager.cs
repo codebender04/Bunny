@@ -6,12 +6,16 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
     [SerializeField] private Level[] levelArray;
-    [SerializeField] Character[] characterArray;
+    private Character[] characterArray;
     private int currentLevelIndex = 0;
     private Level currentLevel;
     private void Awake()
     {
         Instance = this;
+    }
+    private void Start()
+    {
+        characterArray = GameManager.Instance.GetCharacterArray();
     }
     public void LoadLevel(int level)
     {

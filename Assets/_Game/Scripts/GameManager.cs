@@ -86,6 +86,10 @@ public class GameManager : MonoBehaviour
     {
         return selectedCharacter;
     }
+    public Character[] GetCharacterArray()
+    {
+        return characterArray;
+    }
     public bool LevelHasEnded()
     {
         return levelHasEnded;
