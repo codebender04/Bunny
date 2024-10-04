@@ -909,6 +909,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterMovement: {fileID: 896371581}
+  clonePrefab: {fileID: 8316776307056669567, guid: 89544936e31a388489e539f4652f4e39, type: 3}
+  spriteRenderer: {fileID: 1537987465}
 --- !u!61 &896371583
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1996,6 +1998,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterMovement: {fileID: 1736897099}
+  clonePrefab: {fileID: 8316776307056669567, guid: 89544936e31a388489e539f4652f4e39, type: 3}
+  spriteRenderer: {fileID: 1407331516}
 --- !u!114 &1736897099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2214,9 +2218,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelArray:
   - {fileID: 310962887}
-  characterArray:
-  - {fileID: 896371582}
-  - {fileID: 1736897098}
 --- !u!4 &2035211535
 Transform:
   m_ObjectHideFlags: 0

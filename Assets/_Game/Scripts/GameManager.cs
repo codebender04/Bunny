@@ -36,6 +36,10 @@ public class GameManager : MonoBehaviour
     {
         levelHasEnded = false;
         characterArray[0].GetCharacterMovement().Activate();
+        foreach (Character character in characterArray)
+        {
+            character.ClearAllClones();
+        }
         LevelManager.Instance.ReloadCurrentLevel();
     }
 

@@ -13,7 +13,7 @@ public class CharacterMovement : MonoBehaviour
     public event EventHandler OnCharacterFinishMovement;
 
     [SerializeField] private float jumpHeight = 2f;
-    [SerializeField] private float jumpDuration = 0.5f; 
+    [SerializeField] private float jumpDuration = 0.5f;
     [SerializeField] private float shakeDuration = 0.5f;
     [SerializeField] private float shakeStrength = 0.1f;
     [SerializeField] private int shakeVibrato = 10;
@@ -149,5 +149,9 @@ public class CharacterMovement : MonoBehaviour
     public void Deactivate()
     {
         isActivated = false;
+    }
+    public Queue<Vector2> GetMovementQueue()
+    {
+        return movementQueue;
     }
 }
