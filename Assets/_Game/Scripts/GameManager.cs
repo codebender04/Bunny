@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
         characterArray[0].GetCharacterMovement().Activate();
         foreach (Character character in characterArray)
         {
-            character.ClearAllClones();
+            character.ResetCharacter();
         }
         LevelManager.Instance.ReloadCurrentLevel();
     }

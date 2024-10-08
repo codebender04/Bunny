@@ -11,6 +11,7 @@ public class CharacterMovement : MonoBehaviour
 {
     public event EventHandler OnCharacterMoved;
     public event EventHandler OnCharacterFinishMovement;
+    public event EventHandler OnCharacterDie;
 
     [SerializeField] private float jumpHeight = 2f;
     [SerializeField] private float jumpDuration = 0.5f;
@@ -53,7 +54,7 @@ public class CharacterMovement : MonoBehaviour
         Vector2 targetPosition = (Vector2)transform.position + direction;
         targetCell = walkableTilemap.WorldToCell(targetPosition);
 
-        // Check if the target cell is available
+        // Check if the target cell is available and is walkable
         if (!OccupiedCells.ContainsKey(targetCell) && IsWalkable(targetCell))
         {
             OccupiedCells[targetCell] = this;
@@ -64,6 +65,7 @@ public class CharacterMovement : MonoBehaviour
                 jumpCompleted = true;
             });
         }
+        // Check if the target cell has a character but that character has a valid move
         else if (OccupiedCells.ContainsKey(targetCell) && OccupiedCells[targetCell].HasValidMoves())
         {
             OccupiedCells[targetCell] = this;
@@ -72,6 +74,14 @@ public class CharacterMovement : MonoBehaviour
             transform.DOJump(targetPosition, jumpHeight, 1, jumpDuration).OnComplete(() =>
             {
                 jumpCompleted = true;
+            });
+        }
+        else if (!IsWalkable(targetCell))
+        {
+            transform.DOJump(targetPosition, jumpHeight, 1, jumpDuration).OnComplete(() =>
+            {
+                jumpCompleted = true;
+                OnCharacterDie?.Invoke(this, EventArgs.Empty);
             });
         }
         else

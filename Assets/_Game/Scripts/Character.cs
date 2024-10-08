@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class Character : MonoBehaviour
 {
     [SerializeField] private CharacterMovement characterMovement;
+    [SerializeField] private CharacterVisual characterVisual;
     [SerializeField] private CharacterClone clonePrefab;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
@@ -16,11 +17,10 @@ public class Character : MonoBehaviour
         GameInput.Instance.OnMovementKeyPressed += GameInput_OnMovementKeyPressed;
         characterMovement.OnCharacterMoved += CharacterMovement_OnCharacterMoved;
     }
-
     private void CharacterMovement_OnCharacterMoved(object sender, System.EventArgs e)
     {
         Destroy(characterCloneList[0].gameObject, 0.2f);
-        characterCloneList.RemoveAt(0);
+        characterCloneList.RemoveAt(0); 
     }
 
     private void GameInput_OnMovementKeyPressed(object sender, GameInput.OnMovementKeyPressedEventArgs e)
@@ -76,7 +76,12 @@ public class Character : MonoBehaviour
     {
         return characterCloneList[^1].transform.position;
     }
-    public void ClearAllClones()
+    public void ResetCharacter()
+    {
+        characterVisual.PlayIdleAnimation();
+        ClearAllClones();
+    }
+    private void ClearAllClones()
     {
         while (characterCloneList.Count > 0)
         {

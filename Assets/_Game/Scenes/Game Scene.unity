@@ -909,6 +909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterMovement: {fileID: 896371581}
+  characterVisual: {fileID: 1537987467}
   clonePrefab: {fileID: 8316776307056669567, guid: 89544936e31a388489e539f4652f4e39, type: 3}
   spriteRenderer: {fileID: 1537987465}
 --- !u!61 &896371583
@@ -1298,6 +1299,7 @@ GameObject:
   - component: {fileID: 1407331514}
   - component: {fileID: 1407331516}
   - component: {fileID: 1407331515}
+  - component: {fileID: 1407331517}
   m_Layer: 0
   m_Name: Character 2 Visual
   m_TagString: Untagged
@@ -1393,6 +1395,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1407331517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407331513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a3388702792af04c94c27716674e747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1407331515}
+  characterMovement: {fileID: 1736897099}
 --- !u!1839735485 &1503001506 stripped
 Tilemap:
   m_CorrespondingSourceObject: {fileID: 3730250885009318231, guid: f37df8283f499ee45ad9cf72d25f2076, type: 3}
@@ -1451,6 +1467,7 @@ GameObject:
   - component: {fileID: 1537987464}
   - component: {fileID: 1537987465}
   - component: {fileID: 1537987466}
+  - component: {fileID: 1537987467}
   m_Layer: 0
   m_Name: Character 1 Visual
   m_TagString: Untagged
@@ -1546,6 +1563,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1537987467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537987463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a3388702792af04c94c27716674e747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1537987466}
+  characterMovement: {fileID: 896371581}
 --- !u!1 &1590103041
 GameObject:
   m_ObjectHideFlags: 0
@@ -1998,6 +2029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterMovement: {fileID: 1736897099}
+  characterVisual: {fileID: 1407331517}
   clonePrefab: {fileID: 8316776307056669567, guid: 89544936e31a388489e539f4652f4e39, type: 3}
   spriteRenderer: {fileID: 1407331516}
 --- !u!114 &1736897099
