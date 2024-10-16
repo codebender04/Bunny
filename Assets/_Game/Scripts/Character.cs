@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class Character : MonoBehaviour
 {
@@ -11,7 +10,10 @@ public class Character : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
 
     private CharacterClone currentClone;
-    private Queue<Vector2> movementQueue = new Queue<Vector2>();
+    private Queue<Vector2> movementBufferQueue = new Queue<Vector2>();
+    private List<Vector2> movementList = new List<Vector2>();
+    private int currentStep = 0;
+
     private void Start()
     {
         GameInput.Instance.OnMovementKeyPressed += GameInput_OnMovementKeyPressed;
@@ -20,50 +22,58 @@ public class Character : MonoBehaviour
 
     private void CharacterMovement_OnCharacterFinishMovement(object sender, System.EventArgs e)
     {
-        if (currentClone != null)
-        {
-            Destroy(currentClone.gameObject);
-        }
+        DestroyCurrentClone();
     }
+
     private void GameInput_OnMovementKeyPressed(object sender, GameInput.OnMovementKeyPressedEventArgs e)
     {
         if (this != GameManager.Instance.GetSelectedCharacter()) return;
-        movementQueue.Enqueue(e.direction);
-        //if (characterCloneList[^1].IsJumping()) return;
-        //CharacterClone clone = Instantiate(clonePrefab, characterCloneList.Count > 0 ? characterCloneList[^1].transform.position : transform.position, Quaternion.identity);
-        //characterCloneList.Add(clone);
-        //clone.OnInit(this);
-        //clone.JumpToTile(e.direction);
+
+        // Add the direction to the queue
+        currentStep++;
+        movementBufferQueue.Enqueue(e.direction);
+        movementList.Add(e.direction);
+        // If this is the first movement after selecting a character
+        if (movementList.Count == 1)
+        {
+            // Instantiate a clone at the position of every other character
+            foreach (Character character in GameManager.Instance.GetCharacterArray())
+            {
+                if (character != this && character.currentClone == null)
+                {
+                    character.currentClone = Instantiate(clonePrefab, character.transform.position, Quaternion.identity);
+                    character.currentClone.OnInit(character);
+                }
+            }
+        }
     }
+
     private void Update()
     {
-        if (movementQueue.Count > 0)
+        if (movementBufferQueue.Count > 0)
         {
             if (currentClone == null)
             {
-                currentClone = Instantiate(clonePrefab, spriteRenderer.transform.position, Quaternion.identity);
+                currentClone = Instantiate(clonePrefab, transform.position, Quaternion.identity);
                 currentClone.OnInit(this);
             }
-            currentClone.JumpToTile(movementQueue.Dequeue());
-            //if (characterCloneList.Count == 0)
-            //{
-            //    CharacterClone clone = Instantiate(clonePrefab, spriteRenderer.transform.position, Quaternion.identity);
-            //    characterCloneList.Add(clone);
-            //    clone.OnInit(this);
-            //    clone.JumpToTile(movementQueue.Dequeue());
-            //}
-            //else if (!characterCloneList[^1].IsJumping())
-            //{
-            //    CharacterClone clone = Instantiate(clonePrefab, characterCloneList[^1].transform.position, Quaternion.identity);
-            //    characterCloneList.Add(clone);
-            //    clone.OnInit(this);
-            //    clone.JumpToTile(movementQueue.Dequeue());
-            //}
+            foreach (Character character in GameManager.Instance.GetCharacterArray())
+            {
+                if (character != this)
+                {
+                    // Move the character if that character has queued movement
+                    if (character.movementList.Count > 0 && movementList.Count <= character.movementList.Count)
+                    {
+                        character.currentClone.JumpToTile(character.movementList[movementList.Count-1]);
+                    }
+                }
+            }
+            currentClone.JumpToTile(movementBufferQueue.Dequeue()); // Move the clone
         }
     }
-    public void ToggleMovement(Character selectedCharacter)
+    public void ToggleMovement(bool isSelected)
     {
-        if (selectedCharacter == this)
+        if (isSelected)
         {
             characterMovement.Activate();
         }
@@ -72,24 +82,58 @@ public class Character : MonoBehaviour
             characterMovement.Deactivate();
         }
     }
+
     public CharacterMovement GetCharacterMovement()
     {
         return characterMovement;
     }
+
     public SpriteRenderer GetSpriteRenderer()
     {
         return spriteRenderer;
     }
+
     public Vector2 GetLastClonePosition()
     {
-        return currentClone.transform.position;
+        return currentClone != null ? currentClone.transform.position : (Vector2)transform.position;
     }
+
     public void ResetCharacter()
     {
         characterVisual.PlayIdleAnimation();
+        movementList.Clear();
+        DestroyCurrentClone();
+    }
+    public void DestroyCurrentClone()
+    {
         if (currentClone != null)
         {
             Destroy(currentClone.gameObject);
         }
+    }
+    public void SpawnCloneAtStep(int step)
+    {
+        if (step > movementList.Count)
+        {
+            Debug.LogError("Spawn clone at step greater than list!");
+            return;
+        }
+        DestroyCurrentClone();
+        currentClone = Instantiate(clonePrefab, transform.position, Quaternion.identity);
+        currentClone.OnInit(this);
+        Vector2 position = transform.position;
+        for (int i = 0; i <= step; i++)
+        {
+            position += movementList[i];
+        }
+        currentClone.transform.position = position;
+    }
+    public int GetHighestStep()
+    {
+        return movementList.Count - 1; 
+    }
+    public Vector2 GetVisualOffset()
+    {
+        return characterVisual.transform.localPosition;
     }
 }

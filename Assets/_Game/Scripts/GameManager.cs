@@ -81,10 +81,19 @@ public class GameManager : MonoBehaviour
     {
         if (levelHasEnded) return;
         selectedCharacter = e.selectedCharacter;
+
         foreach (Character character in characterArray)
         {
-            character.ToggleMovement(selectedCharacter);
+            character.DestroyCurrentClone();
+            character.ToggleMovement(character == selectedCharacter);
+
+            if (character != selectedCharacter && character.GetHighestStep() > 0 && selectedCharacter.GetHighestStep() > 0)
+            {
+                character.SpawnCloneAtStep(character.GetHighestStep() < selectedCharacter.GetHighestStep() ? 
+                    character.GetHighestStep() : selectedCharacter.GetHighestStep());
+            }
         }
+        if (selectedCharacter.GetHighestStep() > 0) selectedCharacter.SpawnCloneAtStep(selectedCharacter.GetHighestStep());
     }
     public Character GetSelectedCharacter()
     {

@@ -10,11 +10,13 @@ public class CharacterClone : MonoBehaviour
     [SerializeField] private float opacity;
     private Character character;
     private bool jumpCompleted = false;
+    public static Dictionary<Vector3Int, CharacterMovement> OccupiedCells = new();
 
     public void OnInit(Character character)
     {
         this.character = character;
         spriteRenderer.sprite = character.GetSpriteRenderer().sprite;
+        spriteRenderer.transform.localPosition = character.GetVisualOffset();
         spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, opacity);
     }
     public void JumpToTile(Vector2 direction)
