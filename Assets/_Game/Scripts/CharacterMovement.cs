@@ -81,6 +81,7 @@ public class CharacterMovement : MonoBehaviour
             transform.DOJump(targetPosition, jumpHeight, 1, jumpDuration).OnComplete(() =>
             {
                 jumpCompleted = true;
+                movementQueue.Clear();
                 OnCharacterDie?.Invoke(this, EventArgs.Empty);
             });
         }

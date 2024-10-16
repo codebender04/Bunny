@@ -10,19 +10,21 @@ public class Character : MonoBehaviour
     [SerializeField] private CharacterClone clonePrefab;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
-    private List<CharacterClone> characterCloneList = new List<CharacterClone>();
+    private CharacterClone currentClone;
     private Queue<Vector2> movementQueue = new Queue<Vector2>();
     private void Start()
     {
         GameInput.Instance.OnMovementKeyPressed += GameInput_OnMovementKeyPressed;
-        characterMovement.OnCharacterMoved += CharacterMovement_OnCharacterMoved;
-    }
-    private void CharacterMovement_OnCharacterMoved(object sender, System.EventArgs e)
-    {
-        Destroy(characterCloneList[0].gameObject, 0.2f);
-        characterCloneList.RemoveAt(0); 
+        characterMovement.OnCharacterFinishMovement += CharacterMovement_OnCharacterFinishMovement;
     }
 
+    private void CharacterMovement_OnCharacterFinishMovement(object sender, System.EventArgs e)
+    {
+        if (currentClone != null)
+        {
+            Destroy(currentClone.gameObject);
+        }
+    }
     private void GameInput_OnMovementKeyPressed(object sender, GameInput.OnMovementKeyPressedEventArgs e)
     {
         if (this != GameManager.Instance.GetSelectedCharacter()) return;
@@ -37,20 +39,26 @@ public class Character : MonoBehaviour
     {
         if (movementQueue.Count > 0)
         {
-            if (characterCloneList.Count == 0)
+            if (currentClone == null)
             {
-                CharacterClone clone = Instantiate(clonePrefab, spriteRenderer.transform.position, Quaternion.identity);
-                characterCloneList.Add(clone);
-                clone.OnInit(this);
-                clone.JumpToTile(movementQueue.Dequeue());
+                currentClone = Instantiate(clonePrefab, spriteRenderer.transform.position, Quaternion.identity);
+                currentClone.OnInit(this);
             }
-            else if (!characterCloneList[^1].IsJumping())
-            {
-                CharacterClone clone = Instantiate(clonePrefab, characterCloneList[^1].transform.position, Quaternion.identity);
-                characterCloneList.Add(clone);
-                clone.OnInit(this);
-                clone.JumpToTile(movementQueue.Dequeue());
-            }
+            currentClone.JumpToTile(movementQueue.Dequeue());
+            //if (characterCloneList.Count == 0)
+            //{
+            //    CharacterClone clone = Instantiate(clonePrefab, spriteRenderer.transform.position, Quaternion.identity);
+            //    characterCloneList.Add(clone);
+            //    clone.OnInit(this);
+            //    clone.JumpToTile(movementQueue.Dequeue());
+            //}
+            //else if (!characterCloneList[^1].IsJumping())
+            //{
+            //    CharacterClone clone = Instantiate(clonePrefab, characterCloneList[^1].transform.position, Quaternion.identity);
+            //    characterCloneList.Add(clone);
+            //    clone.OnInit(this);
+            //    clone.JumpToTile(movementQueue.Dequeue());
+            //}
         }
     }
     public void ToggleMovement(Character selectedCharacter)
@@ -74,19 +82,14 @@ public class Character : MonoBehaviour
     }
     public Vector2 GetLastClonePosition()
     {
-        return characterCloneList[^1].transform.position;
+        return currentClone.transform.position;
     }
     public void ResetCharacter()
     {
         characterVisual.PlayIdleAnimation();
-        ClearAllClones();
-    }
-    private void ClearAllClones()
-    {
-        while (characterCloneList.Count > 0)
+        if (currentClone != null)
         {
-            Destroy(characterCloneList[0].gameObject);
-            characterCloneList.RemoveAt(0);
+            Destroy(currentClone.gameObject);
         }
     }
 }
