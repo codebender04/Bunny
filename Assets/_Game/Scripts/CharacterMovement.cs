@@ -6,7 +6,12 @@ using System.Collections;
 using static GameInput;
 using Unity.VisualScripting;
 using System;
-
+public enum MovementType
+{
+    Invalid = 0,
+    Moveable = 1,
+    MoveToDeath = 2,
+}
 public class CharacterMovement : MonoBehaviour
 {
     public event EventHandler OnCharacterMoved;
@@ -23,6 +28,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private GameInput gameInput;
 
     public static Dictionary<Vector3Int, CharacterMovement> OccupiedCells = new();
+    public bool ValidMovement;
 
     private Queue<Vector2> movementQueue = new Queue<Vector2>();
     private bool jumpCompleted = false;
@@ -38,6 +44,7 @@ public class CharacterMovement : MonoBehaviour
 
         currentCell = walkableTilemap.WorldToCell(transform.position);
         OccupiedCells.Add(currentCell, this);
+        MovementManager.PotentialCellDict[this] = currentCell;
     }
 
     private void GameInput_OnMovementKeyPressed(object sender, OnMovementKeyPressedEventArgs e)
@@ -45,56 +52,33 @@ public class CharacterMovement : MonoBehaviour
         if (!isActivated) return;
         EnqueueMovement(e.direction);
     }
-    public IEnumerator JumpToTile(Vector2 direction)
+    public IEnumerator JumpToDirection(Vector2 direction)
     {
-        OnCharacterMoved?.Invoke(this, EventArgs.Empty);
-
         jumpCompleted = false;
-        currentCell = walkableTilemap.WorldToCell(transform.position);
         Vector2 targetPosition = (Vector2)transform.position + direction;
         targetCell = walkableTilemap.WorldToCell(targetPosition);
 
-        // Check if the target cell is available and is walkable
-        if (!OccupiedCells.ContainsKey(targetCell) && IsWalkable(targetCell))
+        // Only move if the movement is valid
+        if (ValidMovement)
         {
-            OccupiedCells[targetCell] = this;
             OccupiedCells.Remove(currentCell);
-
-            transform.DOJump(targetPosition, jumpHeight, 1, jumpDuration).OnComplete(() =>
-            {
-                jumpCompleted = true;
-            });
-        }
-        // Check if the target cell has a character but that character has a valid move
-        else if (OccupiedCells.ContainsKey(targetCell) && OccupiedCells[targetCell].HasValidMoves())
-        {
             OccupiedCells[targetCell] = this;
-            OccupiedCells.Remove(currentCell);
 
+            // Execute jump
             transform.DOJump(targetPosition, jumpHeight, 1, jumpDuration).OnComplete(() =>
             {
                 jumpCompleted = true;
-            });
-        }
-        else if (!IsWalkable(targetCell))
-        {
-            transform.DOJump(targetPosition, jumpHeight, 1, jumpDuration).OnComplete(() =>
-            {
-                jumpCompleted = true;
-                movementQueue.Clear();
-                OnCharacterDie?.Invoke(this, EventArgs.Empty);
             });
         }
         else
         {
-            // If the target cell is occupied, shake the character
+            // Invalid movement, shake the character instead
             Vector3 originalPosition = transform.position;
-            transform.DOShakePosition(shakeDuration, strength: new Vector3(shakeStrength, shakeStrength, 0), shakeVibrato, randomness: 90, snapping: false, fadeOut: true, ShakeRandomnessMode.Harmonic)
-                .OnComplete(() =>
-                {
-                    transform.position = originalPosition;
-                    jumpCompleted = true;
-                });
+            transform.DOShakePosition(shakeDuration, shakeStrength, shakeVibrato, 90, false, true).OnComplete(() =>
+            {
+                transform.position = originalPosition;
+                jumpCompleted = true;
+            });
         }
 
         // Wait until the jump is completed
@@ -135,7 +119,13 @@ public class CharacterMovement : MonoBehaviour
         while (movementQueue.Count > 0)
         {
             currentDirection = movementQueue.Dequeue();
-            yield return JumpToTile(currentDirection);
+            currentCell = walkableTilemap.WorldToCell(transform.position);
+            Vector2 targetPosition = (Vector2)transform.position + currentDirection;
+            targetCell = walkableTilemap.WorldToCell(targetPosition);
+            
+            MovementManager.Instance.AnnounceMovement(this, targetCell);
+            yield return new WaitUntil(() => MovementManager.Instance.AreAllCharactersReadyToMove());
+            yield return JumpToDirection(currentDirection);
         }
 
         isExecutingMovements = false;
@@ -164,5 +154,9 @@ public class CharacterMovement : MonoBehaviour
     public Queue<Vector2> GetMovementQueue()
     {
         return movementQueue;
+    }
+    public Vector3Int GetCurrentCell()
+    {
+        return currentCell;
     }
 }

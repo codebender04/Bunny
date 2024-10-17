@@ -12,10 +12,10 @@ public class GameManager : MonoBehaviour
     public event EventHandler OnLevelWon;
 
     [SerializeField] private Character[] characterArray;
+
     private int charactersFinishedMovement = 0;
     private Character selectedCharacter;
     private bool levelHasEnded = false;
-
     private void Awake()
     {
         Instance = this;
@@ -95,6 +95,7 @@ public class GameManager : MonoBehaviour
         }
         if (selectedCharacter.GetHighestStep() > 0) selectedCharacter.SpawnCloneAtStep(selectedCharacter.GetHighestStep());
     }
+
     public Character GetSelectedCharacter()
     {
         return selectedCharacter;
