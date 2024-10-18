@@ -36,11 +36,13 @@ public class GameManager : MonoBehaviour
     {
         levelHasEnded = false;
         characterArray[0].GetCharacterMovement().Activate();
+        MovementManager.Instance.ResetCellDict();
+        LevelManager.Instance.ReloadCurrentLevel();
+        // Always load level before resetting characters
         foreach (Character character in characterArray)
         {
             character.ResetCharacter();
         }
-        LevelManager.Instance.ReloadCurrentLevel();
     }
 
     private void CharacterMovement_OnCharacterFinishMovement(object sender, System.EventArgs e)
@@ -65,10 +67,11 @@ public class GameManager : MonoBehaviour
     }
     private void GameInput_OnStartMovementSequence(object sender, System.EventArgs e)
     {
-        foreach (Character character in characterArray)
-        {
-            character.GetCharacterMovement().StartMovementExecution();
-        }
+        //foreach (Character character in characterArray)
+        //{
+        //    character.GetCharacterMovement().StartMovementExecution();
+        //}
+        MovementManager.Instance.StartSynchronizedMovement();
     }
     private void DeactivateCharacterMovement()
     {

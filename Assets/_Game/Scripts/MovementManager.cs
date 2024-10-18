@@ -1,78 +1,124 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
 public class MovementManager : MonoBehaviour
 {
     public static MovementManager Instance;
     [SerializeField] private CharacterMovement[] characterMovementArray;
-    public bool allCharactersReadyToMove = false;
-    private int charactersToMove = 0;
-    private int charactersFinishedMovement = 0;
-    // Dictionary to hold each character's announced target cell
-    public static Dictionary<CharacterMovement, Vector3Int> PotentialCellDict = new Dictionary<CharacterMovement, Vector3Int>();
+    private Dictionary<Vector3Int, CharacterMovement> nextCellDict = new Dictionary<Vector3Int, CharacterMovement>();
+    private Dictionary<CharacterMovement, Vector3Int> newNextCellDict = new Dictionary<CharacterMovement, Vector3Int>();
 
     private void Awake()
     {
         Instance = this;
     }
-    private void Start()
+
+    public void StartSynchronizedMovement()
     {
-        foreach (var character in characterMovementArray)
+        StartCoroutine(SynchronizedMovementRoutine());
+    }
+
+    private IEnumerator SynchronizedMovementRoutine()
+    {
+        int maxSteps = 0;
+        // Find the longest queue length
+        foreach (CharacterMovement character in characterMovementArray)
         {
-            character.OnCharacterFinishMovement += Character_OnCharacterFinishMovement;
+            maxSteps = Mathf.Max(maxSteps, character.GetMovementQueue().Count);
         }
-    }
-
-    private void Character_OnCharacterFinishMovement(object sender, System.EventArgs e)
-    {
-        charactersFinishedMovement++;
-    }
-
-    public void AnnounceMovement(CharacterMovement characterMovement, Vector3Int targetCell)
-    {
-        charactersToMove++;
-        PotentialCellDict[characterMovement] = targetCell;
-
-        // Wait for all characters to announce their movements
-        if (charactersToMove >= characterMovementArray.Length - charactersFinishedMovement)
+        // Execute each step in the queue for all characters
+        for (int step = 0; step <= maxSteps; step++)
         {
-            // Identify characters that want to move to the same cell
-            var duplicateCells = PotentialCellDict.GroupBy(x => x.Value)
-                                                  .Where(group => group.Count() > 1)
-                                                  .Select(group => group.Key)
-                                                  .ToList();
-
-            // Invalidate movements for all characters targeting the same cell
-            foreach (var cell in duplicateCells)
+            // First, announce the next position for all characters
+            foreach (CharacterMovement character in characterMovementArray)
             {
-                var conflictedCharacters = PotentialCellDict.Where(x => x.Value == cell)
-                                                            .Select(x => x.Key);
-                foreach (var character in conflictedCharacters)
+                if (character.GetMovementQueue().Count > 0)
                 {
-                    character.ValidMovement = false; // Invalidate all conflicting movements
+                    Vector2 direction = character.GetMovementQueue().Peek();
+                    Vector3Int targetCell = character.GetNextTargetCell(direction);
+                    // Check if the target cell is already occupied by another character moving
+                    newNextCellDict[character] = targetCell;
+                    if (!character.IsWalkable(targetCell))
+                    {
+                        character.MovementType = MovementType.MoveToDeath;
+                    }
+                    else if (!nextCellDict.ContainsKey(targetCell))
+                    {
+                        nextCellDict[targetCell] = character;
+                        character.MovementType = MovementType.Moveable;
+                    }
+                    else
+                    {
+                        // Conflict detected: Both characters try to move to the same cell, cancel both
+                        character.MovementType = MovementType.Invalid;
+                        nextCellDict[targetCell].MovementType = MovementType.Invalid;
+                    }
+                }
+                else
+                {
+                    // Character has no more moves
+                    character.MovementType = MovementType.FinishMovement;
+                    newNextCellDict[character] = character.GetCurrentCell();
+                    if (nextCellDict.ContainsKey(character.GetCurrentCell()))
+                    {
+                        nextCellDict[character.GetCurrentCell()].MovementType = MovementType.Invalid;
+                    }
+                }
+            }
+            var duplicates = newNextCellDict
+                .GroupBy(pair => pair.Value)            // Group by the Vector3Int value
+                .Where(group => group.Count() > 1)      // Filter groups where there's more than one CharacterMovement
+                .Select(group => group.Select(pair => pair.Key));  // Select the CharacterMovements in each group
+            foreach (var group in duplicates)
+            {
+                Debug.Log("Duplicate Vector3Int shared by:");
+                foreach (CharacterMovement characterMovement in group)
+                {
+                    characterMovement.MovementType = MovementType.Invalid;
+                }
+            }
+            // Now, execute movements for all characters that have valid moves
+            foreach (CharacterMovement character in characterMovementArray)
+            {
+                switch (character.MovementType)
+                {
+                    case MovementType.Invalid:
+                        character.Shake();
+                        break;
+                    case MovementType.Moveable:
+                        character.ExecuteNextMove();
+                        break;
+                    case MovementType.FinishMovement:
+                        character.StandStill();
+                        break;
+                    case MovementType.MoveToDeath:
+                        character.MoveAndDie();
+                        break;
                 }
             }
 
-            // Allow valid moves for non-conflicting characters
-            foreach (var kvp in PotentialCellDict)
+            // Wait for all movements to complete before the next step
+            yield return new WaitForSeconds(0.2f);
+            // Clear the dictionary only for cells where characters moved, not for characters that finished early
+            List<Vector3Int> cellsToRemove = new List<Vector3Int>();
+            foreach (var entry in nextCellDict)
             {
-                if (!duplicateCells.Contains(kvp.Value))
+                if (entry.Value.MovementType == MovementType.Moveable || entry.Value.MovementType == MovementType.MoveToDeath)
                 {
-                    kvp.Key.ValidMovement = true;
-                    CharacterMovement.OccupiedCells[kvp.Value] = kvp.Key;
+                    cellsToRemove.Add(entry.Key); // Only remove cells where the character actually moved
                 }
             }
 
-            // Reset for the next round
-            charactersToMove = 0;
-            charactersFinishedMovement = 0;
-            allCharactersReadyToMove = true;
+            // Remove only the cells where movement occurred
+            foreach (var cell in cellsToRemove)
+            {
+                nextCellDict.Remove(cell);
+            }
         }
     }
-
-    public bool AreAllCharactersReadyToMove()
+    public void ResetCellDict()
     {
-        return allCharactersReadyToMove;
+        nextCellDict.Clear();
     }
 }

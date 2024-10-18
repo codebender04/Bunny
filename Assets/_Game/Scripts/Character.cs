@@ -13,6 +13,7 @@ public class Character : MonoBehaviour
     private Queue<Vector2> movementBufferQueue = new Queue<Vector2>();
     private List<Vector2> movementList = new List<Vector2>();
     private int currentStep = 0;
+    private bool isCoroutineRunning;
 
     private void Start()
     {
@@ -46,17 +47,23 @@ public class Character : MonoBehaviour
                 }
             }
         }
-    }
-
-    private void Update()
-    {
-        if (movementBufferQueue.Count > 0)
+        if (!isCoroutineRunning)
         {
-            if (currentClone == null)
-            {
-                currentClone = Instantiate(clonePrefab, transform.position, Quaternion.identity);
-                currentClone.OnInit(this);
-            }
+            StartCoroutine(MoveCloneCoroutine());
+        }
+    }
+    private IEnumerator MoveCloneCoroutine()
+    {
+        isCoroutineRunning = true;
+
+        if (movementBufferQueue.Count > 0 && currentClone == null)
+        {
+            currentClone = Instantiate(clonePrefab, transform.position, Quaternion.identity);
+            currentClone.OnInit(this);
+        }
+
+        while (movementBufferQueue.Count > 0)
+        {
             foreach (Character character in GameManager.Instance.GetCharacterArray())
             {
                 if (character != this)
@@ -64,12 +71,14 @@ public class Character : MonoBehaviour
                     // Move the character if that character has queued movement
                     if (character.movementList.Count > 0 && movementList.Count <= character.movementList.Count)
                     {
-                        character.currentClone.JumpToTile(character.movementList[movementList.Count-1]);
+                        StartCoroutine(character.currentClone.JumpToTile(character.movementList[movementList.Count - 1]));
                     }
                 }
             }
-            currentClone.JumpToTile(movementBufferQueue.Dequeue()); // Move the clone
+            yield return currentClone.JumpToTile(movementBufferQueue.Dequeue()); // Move the clone
         }
+
+        isCoroutineRunning = false;
     }
     public void ToggleMovement(bool isSelected)
     {
@@ -102,6 +111,7 @@ public class Character : MonoBehaviour
     {
         characterVisual.PlayIdleAnimation();
         movementList.Clear();
+        characterMovement.ClearMovement();
         DestroyCurrentClone();
     }
     public void DestroyCurrentClone()
