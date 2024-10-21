@@ -10,7 +10,13 @@ public class CharacterVisual : MonoBehaviour
     private void Start()
     {
         characterMovement.OnCharacterDie += CharacterMovement_OnCharacterDie;
+        GameManager.Instance.OnLevelWon += GameManager_OnLevelWon;
         animator.SetTrigger(Constant.ANIM_IDLE);
+    }
+
+    private void GameManager_OnLevelWon(object sender, System.EventArgs e)
+    {
+        animator.SetTrigger(Constant.ANIM_DIE);
     }
 
     private void CharacterMovement_OnCharacterDie(object sender, System.EventArgs e)

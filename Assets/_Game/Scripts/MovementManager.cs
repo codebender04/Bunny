@@ -6,14 +6,21 @@ using UnityEngine.TextCore.Text;
 public class MovementManager : MonoBehaviour
 {
     public static MovementManager Instance;
-    [SerializeField] private CharacterMovement[] characterMovementArray;
+    private CharacterMovement[] characterMovementArray;
     private Dictionary<CharacterMovement, Vector3Int> nextCellDict = new Dictionary<CharacterMovement, Vector3Int>();
 
     private void Awake()
     {
         Instance = this;
     }
-
+    private void Start()
+    {
+        characterMovementArray = new CharacterMovement[GameManager.Instance.GetCharacterArray().Length];
+        for (int i = 0; i < characterMovementArray.Length; i++)
+        {
+            characterMovementArray[i] = GameManager.Instance.GetCharacterArray()[i].GetCharacterMovement();
+        }
+    }
     public void StartSynchronizedMovement()
     {
         StartCoroutine(SynchronizedMovementRoutine());

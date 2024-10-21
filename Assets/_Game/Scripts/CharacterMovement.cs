@@ -25,8 +25,8 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float shakeStrength = 0.1f;
     [SerializeField] private int shakeVibrato = 10;
     [SerializeField] private Tilemap walkableTilemap;
+    [SerializeField] private Tilemap decorativesTilemap;
     [SerializeField] private Tile goalTile;
-    [SerializeField] private GameInput gameInput;
 
     public bool ValidMovement;
     public MovementType MovementType;
@@ -38,7 +38,7 @@ public class CharacterMovement : MonoBehaviour
     private bool isFirstStandStill = true;
     private void Start()
     {
-        gameInput.OnMovementKeyPressed += GameInput_OnMovementKeyPressed;
+        GameInput.Instance.OnMovementKeyPressed += GameInput_OnMovementKeyPressed;
 
         currentCell = walkableTilemap.WorldToCell(transform.position);
     }
@@ -108,7 +108,7 @@ public class CharacterMovement : MonoBehaviour
     }
     public bool IsAtGoal()
     {
-        return walkableTilemap.GetTile(targetCell) == goalTile;
+        return decorativesTilemap.GetTile(currentCell) == goalTile;
     }
     public void Activate()
     {
