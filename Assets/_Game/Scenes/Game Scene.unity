@@ -321,7 +321,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &376722880
 RectTransform:
   m_ObjectHideFlags: 0
@@ -897,6 +897,7 @@ MonoBehaviour:
   goalTile: {fileID: 11400000, guid: da9349df3f73c9c41b47d06ca0ec14c9, type: 2}
   gameInput: {fileID: 299384366}
   ValidMovement: 0
+  MovementType: 0
 --- !u!114 &896371582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1776,7 +1777,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1706808901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2054,6 +2055,7 @@ MonoBehaviour:
   goalTile: {fileID: 11400000, guid: c0380dd620a3bc04a87327f2497154e7, type: 2}
   gameInput: {fileID: 299384366}
   ValidMovement: 0
+  MovementType: 0
 --- !u!4 &1736897100
 Transform:
   m_ObjectHideFlags: 0
@@ -2063,7 +2065,7 @@ Transform:
   m_GameObject: {fileID: 1736897096}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0.5, z: 0}
+  m_LocalPosition: {x: -1.5, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2102,7 +2104,6 @@ MonoBehaviour:
   characterMovementArray:
   - {fileID: 896371581}
   - {fileID: 1736897099}
-  allCharactersReadyToMove: 0
 --- !u!4 &1780018235
 Transform:
   m_ObjectHideFlags: 0

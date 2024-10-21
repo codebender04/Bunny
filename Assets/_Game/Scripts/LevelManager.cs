@@ -23,7 +23,6 @@ public class LevelManager : MonoBehaviour
 
         currentLevelIndex = level-1;
         currentLevel = Instantiate(levelArray[currentLevelIndex]);
-        CharacterMovement.OccupiedCells.Clear();
 
         for (int i = 0; i < characterArray.Length; i++)
         {
