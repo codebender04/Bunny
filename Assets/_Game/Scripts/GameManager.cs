@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
         {
             character.GetCharacterMovement().OnCharacterFinishMovement += CharacterMovement_OnCharacterFinishMovement;
         }
+        selectedCharacter = characterArray[0];
     }
 
     private void GameInput_OnLevelRetried(object sender, EventArgs e)

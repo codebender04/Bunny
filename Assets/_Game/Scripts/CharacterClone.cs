@@ -19,7 +19,7 @@ public class CharacterClone : MonoBehaviour
         spriteRenderer.transform.localPosition = character.GetVisualOffset();
         spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, opacity);
     }
-    public IEnumerator JumpToTile(Vector2 direction)
+    public IEnumerator JumpToDirection(Vector2 direction)
     {
         jumpCompleted = false;
         Vector2 targetPosition = character.GetLastClonePosition() + direction;

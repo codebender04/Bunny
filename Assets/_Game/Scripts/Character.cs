@@ -71,11 +71,11 @@ public class Character : MonoBehaviour
                     // Move the character if that character has queued movement
                     if (character.movementList.Count > 0 && movementList.Count <= character.movementList.Count)
                     {
-                        StartCoroutine(character.currentClone.JumpToTile(character.movementList[movementList.Count - 1]));
+                        StartCoroutine(character.currentClone.JumpToDirection(character.movementList[movementList.Count - 1]));
                     }
                 }
             }
-            yield return currentClone.JumpToTile(movementBufferQueue.Dequeue()); // Move the clone
+            yield return currentClone.JumpToDirection(movementBufferQueue.Dequeue()); // Move the clone
         }
 
         isCoroutineRunning = false;
