@@ -243,7 +243,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   titleAnimator: {fileID: 823254181}
-  maxTimer: 4
+  maxTimer: 6
+  minTimer: 2
 --- !u!1 &248225547
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,10 +494,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a07aef45eb665640bc3b6a8c28543fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textComponent: {fileID: 409417124}
-  amplitude: 10
-  stepDuration: 0.2
-  characterDelay: 0.1
 --- !u!1 &477819338
 GameObject:
   m_ObjectHideFlags: 0

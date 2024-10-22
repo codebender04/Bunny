@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class MainMenuUI : MonoBehaviour
 {
     [SerializeField] private Animator titleAnimator;
     [SerializeField] private float maxTimer;
+    [SerializeField] private float minTimer;
     private float timer;
     private void Start()
     {
-        timer = maxTimer;
+        timer = Random.Range(minTimer, maxTimer);
     }
     private void Update()
     {
@@ -17,7 +19,7 @@ public class MainMenuUI : MonoBehaviour
         if (timer < 0)
         {
             titleAnimator.SetTrigger(Constant.ANIM_TITLE_WAVE);
-            timer = maxTimer;
+            timer = Random.Range(minTimer, maxTimer);
         }
     }
     public void NewGameButton()
