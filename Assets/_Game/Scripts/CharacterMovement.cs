@@ -34,7 +34,6 @@ public class CharacterMovement : MonoBehaviour
     private Queue<Vector2> movementQueue = new Queue<Vector2>();
     private bool isActivated = true;
     private Vector3Int currentCell;
-    private Vector3Int targetCell;
     private bool isFirstStandStill = true;
     private void Start()
     {

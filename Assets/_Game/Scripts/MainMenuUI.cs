@@ -36,7 +36,7 @@ public class MainMenuUI : MonoBehaviour
     }
     private IEnumerator LoadLevelCoroutine()
     {
-        titleAnimator.SetTrigger(Constant.ANIM_TITLE_FADEOUT);
+        titleAnimator.SetTrigger(Constant.ANIM_FADEOUT);
         yield return new WaitForSeconds(1.5f);
         mainMenuAnimator.SetTrigger(Constant.ANIM_MAINMENU_TRANSITOUT);
         yield return new WaitForSeconds(1.5f);

@@ -7,7 +7,7 @@ public static class Constant
     public const string ANIM_IDLE = "Idle";
     public const string ANIM_DIE = "Die";
     public const string ANIM_TITLE_WAVE = "Wave";
-    public const string ANIM_TITLE_FADEOUT = "FadeOut";
-    public const string ANIM_TITLE_FADEIN = "FadeIn";
+    public const string ANIM_FADEOUT = "FadeOut";
+    public const string ANIM_FADEIN = "FadeIn";
     public const string ANIM_MAINMENU_TRANSITOUT = "TransitOut";
 }

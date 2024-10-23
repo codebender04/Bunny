@@ -8,8 +8,8 @@ public class LevelManager : MonoBehaviour
     public static LevelManager Instance;
 
     [SerializeField] private Level levelPrefab;
-    private Character[] characterArray;
     private Level level;
+    private Character[] characterArray;
 
     private void Awake()
     {
@@ -26,6 +26,7 @@ public class LevelManager : MonoBehaviour
     {
         characterArray = GameManager.Instance.GetCharacterArray();
         GameManager.Instance.OnLevelWon += GameManager_OnLevelWon;
+        level = levelPrefab;
     }
     private void GameManager_OnLevelWon(object sender, System.EventArgs e)
     {
@@ -33,6 +34,7 @@ public class LevelManager : MonoBehaviour
     }
     private IEnumerator LoadNextLevelCoroutine()
     {
+        level.FadeOut();
         yield return new WaitForSeconds(2f);
         Loader.LoadNextLevel();
     }
