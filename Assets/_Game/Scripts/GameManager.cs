@@ -40,9 +40,14 @@ public class GameManager : MonoBehaviour
 
     private void GameInput_OnLevelRetried(object sender, EventArgs e)
     {
+       StartCoroutine(nameof(RetryLevelCoroutine));
+    }
+    private IEnumerator RetryLevelCoroutine()
+    {
         levelHasEnded = false;
         characterArray[0].GetCharacterMovement().Activate();
         MovementManager.Instance.ResetCellDict();
+        yield return new WaitForSeconds(1f);
         LevelManager.Instance.ReloadCurrentLevel();
         // Always load level before resetting characters
         foreach (Character character in characterArray)
@@ -50,7 +55,6 @@ public class GameManager : MonoBehaviour
             character.ResetCharacter();
         }
     }
-
     private void CharacterMovement_OnCharacterFinishMovement(object sender, System.EventArgs e)
     {
         charactersFinishedMovement++;
