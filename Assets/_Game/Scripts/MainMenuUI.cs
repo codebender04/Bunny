@@ -34,6 +34,14 @@ public class MainMenuUI : MonoBehaviour
         StartCoroutine(LoadLevelCoroutine());
         newGameButton.interactable = false;
     }
+    public void LevelsButton()
+    {
+
+    }
+    public void SettingsButton()
+    {
+
+    }
     private IEnumerator LoadLevelCoroutine()
     {
         titleAnimator.SetTrigger(Constant.ANIM_FADEOUT);
