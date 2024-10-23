@@ -10,4 +10,9 @@ public static class Loader
 
         SceneManager.LoadScene(levelName);
     }
+    public static void LoadNextLevel()
+    {
+        currentlevel++;
+        SceneManager.LoadScene(currentlevel);
+    }
 }

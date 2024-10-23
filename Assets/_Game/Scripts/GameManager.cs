@@ -38,7 +38,8 @@ public class GameManager : MonoBehaviour
         levelHasEnded = false;
         characterArray[0].GetCharacterMovement().Activate();
         MovementManager.Instance.ResetCellDict();
-        LevelManager.Instance.ReloadCurrentLevel();
+        //LevelManager.Instance.ReloadCurrentLevel();
+        Level.Instance.ReloadCurrentLevel();
         // Always load level before resetting characters
         foreach (Character character in characterArray)
         {
