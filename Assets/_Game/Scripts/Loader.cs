@@ -1,6 +1,8 @@
+using System.Diagnostics;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public static class Loader
+public class Loader : MonoBehaviour
 {
     private static int currentlevel;
     public static void LoadLevel(int level)
@@ -13,6 +15,6 @@ public static class Loader
     public static void LoadNextLevel()
     {
         currentlevel++;
-        SceneManager.LoadScene(currentlevel);
+        LoadLevel(currentlevel);
     }
 }

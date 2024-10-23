@@ -708,6 +708,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4226711876275212498, guid: bd788c1ed6438f5438dc064dff16ecd1, type: 3}
+      propertyPath: levelPrefab
+      value: 
+      objectReference: {fileID: 5395245251591674198}
+    - target: {fileID: 4226711876275212498, guid: bd788c1ed6438f5438dc064dff16ecd1, type: 3}
       propertyPath: levelArray.Array.data[0]
       value: 
       objectReference: {fileID: 5395245251591674198}

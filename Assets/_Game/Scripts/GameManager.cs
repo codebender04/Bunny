@@ -30,7 +30,12 @@ public class GameManager : MonoBehaviour
         {
             character.GetCharacterMovement().OnCharacterFinishMovement += CharacterMovement_OnCharacterFinishMovement;
         }
+        // Select character 1 by default
         selectedCharacter = characterArray[0];
+        foreach (Character character in characterArray)
+        {
+            character.ToggleMovement(character == selectedCharacter);
+        }
     }
 
     private void GameInput_OnLevelRetried(object sender, EventArgs e)
@@ -38,7 +43,6 @@ public class GameManager : MonoBehaviour
         levelHasEnded = false;
         characterArray[0].GetCharacterMovement().Activate();
         MovementManager.Instance.ResetCellDict();
-        //LevelManager.Instance.ReloadCurrentLevel();
         LevelManager.Instance.ReloadCurrentLevel();
         // Always load level before resetting characters
         foreach (Character character in characterArray)

@@ -35,7 +35,18 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.StartMovementSequence.performed += StartMovementSequence_performed;
         playerInputActions.Player.RetryLevel.performed += RetryLevel_performed;
     }
+    private void OnDestroy()
+    {
+        playerInputActions.Player.MoveUp.performed -= ctx => OnKeyPressed(Vector2.up);
+        playerInputActions.Player.MoveLeft.performed -= ctx => OnKeyPressed(Vector2.left);
+        playerInputActions.Player.MoveDown.performed -= ctx => OnKeyPressed(Vector2.down);
+        playerInputActions.Player.MoveRight.performed -= ctx => OnKeyPressed(Vector2.right);
+        playerInputActions.Player.LeftClick.performed -= LeftClick_performed;
+        playerInputActions.Player.StartMovementSequence.performed -= StartMovementSequence_performed;
+        playerInputActions.Player.RetryLevel.performed -= RetryLevel_performed;
 
+        playerInputActions.Dispose();
+    }
     private void RetryLevel_performed(InputAction.CallbackContext obj)
     {
         OnLevelRetried?.Invoke(this, EventArgs.Empty);
