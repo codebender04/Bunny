@@ -5,10 +5,9 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
-    [SerializeField] private Level[] levelArray;
+    [SerializeField] private Level levelPrefab;
     private Character[] characterArray;
-    private int currentLevelIndex = 0;
-    private Level currentLevel;
+    private Level level;
     private void Awake()
     {
         Instance = this;
@@ -17,24 +16,19 @@ public class LevelManager : MonoBehaviour
     {
         characterArray = GameManager.Instance.GetCharacterArray();
     }
-    public void LoadLevel(int level)
+    public void ReloadCurrentLevel()
     {
-        if (currentLevel != null) DestroyCurrentLevel();
+        if (level != null) DestroyCurrentLevel();
 
-        currentLevelIndex = level-1;
-        currentLevel = Instantiate(levelArray[currentLevelIndex]);
+        level = Instantiate(levelPrefab);
 
         for (int i = 0; i < characterArray.Length; i++)
         {
-            characterArray[i].transform.position = currentLevel.GetStartingCharacterTransformArray()[i].position;
+            characterArray[i].transform.position = level.GetStartingCharacterTransformArray()[i].position;
         }
-    }
-    public void ReloadCurrentLevel()
-    {
-        LoadLevel(currentLevelIndex + 1);
     }
     private void DestroyCurrentLevel()
     {
-        Destroy(currentLevel.gameObject);
+        Destroy(level.gameObject);
     }
 }

@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
         characterArray[0].GetCharacterMovement().Activate();
         MovementManager.Instance.ResetCellDict();
         //LevelManager.Instance.ReloadCurrentLevel();
-        Level.Instance.ReloadCurrentLevel();
+        LevelManager.Instance.ReloadCurrentLevel();
         // Always load level before resetting characters
         foreach (Character character in characterArray)
         {
