@@ -38,7 +38,7 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         Loader.LoadNextLevel();
     }
-    public void ReloadCurrentLevel()
+    public void ResetCharactersPosition()
     {
         for (int i = 0; i < characterArray.Length; i++)
         {

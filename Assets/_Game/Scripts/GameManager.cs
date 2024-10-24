@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public event EventHandler OnLevelWon;
 
     [SerializeField] private Character[] characterArray;
-
+    [SerializeField] private GameObject[] characterDeadDummyArray;
     private int charactersFinishedMovement = 0;
     private Character selectedCharacter;
     private bool levelHasEnded = false;
@@ -40,16 +40,15 @@ public class GameManager : MonoBehaviour
 
     private void GameInput_OnLevelRetried(object sender, EventArgs e)
     {
-       StartCoroutine(nameof(RetryLevelCoroutine));
-    }
-    private IEnumerator RetryLevelCoroutine()
-    {
         levelHasEnded = false;
         characterArray[0].GetCharacterMovement().Activate();
         MovementManager.Instance.ResetCellDict();
-        yield return new WaitForSeconds(1f);
-        LevelManager.Instance.ReloadCurrentLevel();
-        // Always load level before resetting characters
+        for (int i = 0; i < characterArray.Length; i++)
+        {
+            if (characterArray[i].IsDead()) continue;
+            Destroy(Instantiate(characterDeadDummyArray[i], characterArray[i].GetCharacterVisual().transform.position, Quaternion.identity), 1f);
+        }
+        LevelManager.Instance.ResetCharactersPosition();
         foreach (Character character in characterArray)
         {
             character.ResetCharacter();

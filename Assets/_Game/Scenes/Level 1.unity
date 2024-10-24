@@ -683,6 +683,14 @@ PrefabInstance:
       propertyPath: characterArray.Array.data[1]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 83370924696064028, guid: 7a161fea00bd1974c90e0ccd7111c2ec, type: 3}
+      propertyPath: characterDeadDummyArray.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 83370924696064028, guid: 7a161fea00bd1974c90e0ccd7111c2ec, type: 3}
+      propertyPath: characterDeadDummyArray.Array.data[0]
+      value: 
+      objectReference: {fileID: 535567124872857270, guid: 6fb55e7ed71e94e45a1b70ee9783ebd1, type: 3}
     - target: {fileID: 1657238936052088094, guid: 7a161fea00bd1974c90e0ccd7111c2ec, type: 3}
       propertyPath: m_Name
       value: Game Manager

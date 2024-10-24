@@ -14,11 +14,18 @@ public class Character : MonoBehaviour
     private List<Vector2> movementList = new List<Vector2>();
     private int currentStep = 0;
     private bool isCoroutineRunning;
+    private bool isDead = false;
 
     private void Start()
     {
         GameInput.Instance.OnMovementKeyPressed += GameInput_OnMovementKeyPressed;
         characterMovement.OnCharacterFinishMovement += CharacterMovement_OnCharacterFinishMovement;
+        characterMovement.OnCharacterDie += CharacterMovement_OnCharacterDie;
+    }
+
+    private void CharacterMovement_OnCharacterDie(object sender, System.EventArgs e)
+    {
+        isDead = true;
     }
 
     private void CharacterMovement_OnCharacterFinishMovement(object sender, System.EventArgs e)
@@ -109,6 +116,7 @@ public class Character : MonoBehaviour
 
     public void ResetCharacter()
     {
+        isDead = false;
         characterVisual.PlayIdleAnimation();
         movementList.Clear();
         characterMovement.ClearMovement();
@@ -145,5 +153,13 @@ public class Character : MonoBehaviour
     public Vector2 GetVisualOffset()
     {
         return characterVisual.transform.localPosition;
+    }
+    public CharacterVisual GetCharacterVisual()
+    {
+        return characterVisual;
+    }
+    public bool IsDead()
+    {
+        return isDead;
     }
 }
