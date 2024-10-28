@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     public event EventHandler OnLevelWon;
 
     [SerializeField] private Character[] characterArray;
-    [SerializeField] private GameObject[] characterDeadDummyArray;
     private int charactersFinishedMovement = 0;
     private Character selectedCharacter;
     private bool levelHasEnded = false;
@@ -46,7 +45,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < characterArray.Length; i++)
         {
             if (characterArray[i].IsDead()) continue;
-            Destroy(Instantiate(characterDeadDummyArray[i], characterArray[i].GetCharacterVisual().transform.position, Quaternion.identity), 1f);
+            Destroy(Instantiate(characterArray[i].GetDeadDummy(), characterArray[i].GetCharacterVisual().transform.position, Quaternion.identity), 1f);
         }
         LevelManager.Instance.ResetCharactersPosition();
         foreach (Character character in characterArray)

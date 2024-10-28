@@ -8,6 +8,7 @@ public class Character : MonoBehaviour
     [SerializeField] private CharacterVisual characterVisual;
     [SerializeField] private CharacterClone clonePrefab;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private GameObject characterDeadDummy;
 
     private CharacterClone currentClone;
     private Queue<Vector2> movementBufferQueue = new Queue<Vector2>();
@@ -161,5 +162,9 @@ public class Character : MonoBehaviour
     public bool IsDead()
     {
         return isDead;
+    }
+    public GameObject GetDeadDummy()
+    {
+        return characterDeadDummy;
     }
 }

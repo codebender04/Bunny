@@ -176,7 +176,6 @@ MonoBehaviour:
   walkableTilemap: {fileID: 0}
   decorativesTilemap: {fileID: 0}
   goalTile: {fileID: 11400000, guid: 760823afc4bb69b49b5a09fb3bff72d6, type: 2}
-  gameInput: {fileID: 0}
   ValidMovement: 0
   MovementType: 0
 --- !u!114 &3585662570943363502
@@ -195,6 +194,7 @@ MonoBehaviour:
   characterVisual: {fileID: 2706130111157922612}
   clonePrefab: {fileID: 8316776307056669567, guid: 89544936e31a388489e539f4652f4e39, type: 3}
   spriteRenderer: {fileID: 3104138026910953405}
+  characterDeadDummy: {fileID: 535567124872857270, guid: 6fb55e7ed71e94e45a1b70ee9783ebd1, type: 3}
 --- !u!61 &3957326308496868834
 BoxCollider2D:
   m_ObjectHideFlags: 0
