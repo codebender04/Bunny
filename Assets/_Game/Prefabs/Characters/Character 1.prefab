@@ -175,6 +175,7 @@ MonoBehaviour:
   shakeVibrato: 20
   walkableTilemap: {fileID: 0}
   decorativesTilemap: {fileID: 0}
+  destructiblesTilemap: {fileID: 0}
   goalTile: {fileID: 11400000, guid: 760823afc4bb69b49b5a09fb3bff72d6, type: 2}
   ValidMovement: 0
   MovementType: 0

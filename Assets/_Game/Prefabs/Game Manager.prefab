@@ -47,3 +47,5 @@ MonoBehaviour:
   characterArray:
   - {fileID: 0}
   - {fileID: 0}
+  destructiblesTilemap: {fileID: 0}
+  destructiblesTile: {fileID: 11400000, guid: 31a65ca61aacd9a438488bad8b91be90, type: 2}

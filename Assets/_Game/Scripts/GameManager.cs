@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Tilemaps;
+using static UnityEditor.FilePathAttribute;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,12 +14,17 @@ public class GameManager : MonoBehaviour
     public event EventHandler OnLevelWon;
 
     [SerializeField] private Character[] characterArray;
+    [SerializeField] private Tilemap destructiblesTilemap;
+    [SerializeField] private Tile destructiblesTile;
+
+    private List<Vector3Int> destructiblesPositionList;
     private int charactersFinishedMovement = 0;
     private Character selectedCharacter;
     private bool levelHasEnded = false;
     private void Awake()
     {
         Instance = this;
+        destructiblesPositionList = new List<Vector3Int>();
     }
     private void Start()
     {
@@ -35,6 +42,22 @@ public class GameManager : MonoBehaviour
         {
             character.ToggleMovement(character == selectedCharacter);
         }
+        BoundsInt bounds = destructiblesTilemap.cellBounds;
+        TileBase[] destructibles = destructiblesTilemap.GetTilesBlock(bounds);
+        for (int x = bounds.xMin; x < bounds.xMax;  x++)
+        {
+            for (int y = bounds.yMin; y < bounds.yMax; y++)
+            {
+                Vector3Int localLocation = new Vector3Int(
+                    x: x,
+                    y: y,
+                    z: 0);
+                if (destructiblesTilemap.HasTile(localLocation))
+                {
+                    destructiblesPositionList.Add(localLocation);
+                }
+            }
+        }
     }
 
     private void GameInput_OnLevelRetried(object sender, EventArgs e)
@@ -51,6 +74,11 @@ public class GameManager : MonoBehaviour
         foreach (Character character in characterArray)
         {
             character.ResetCharacter();
+        }
+        foreach (Vector3Int tilePosition in destructiblesPositionList)
+        {
+            destructiblesTilemap.SetTile(tilePosition, destructiblesTile);
+            Debug.Log(tilePosition);
         }
     }
     private void CharacterMovement_OnCharacterFinishMovement(object sender, System.EventArgs e)

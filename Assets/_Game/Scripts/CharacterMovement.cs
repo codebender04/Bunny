@@ -26,6 +26,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private int shakeVibrato = 10;
     [SerializeField] private Tilemap walkableTilemap;
     [SerializeField] private Tilemap decorativesTilemap;
+    [SerializeField] private Tilemap destructiblesTilemap;
     [SerializeField] private Tile goalTile;
 
     public bool ValidMovement;
@@ -49,7 +50,7 @@ public class CharacterMovement : MonoBehaviour
     }
     public bool IsWalkable(Vector3Int cellPosition)
     {
-        return walkableTilemap.HasTile(cellPosition);
+        return walkableTilemap.HasTile(cellPosition) || destructiblesTilemap.HasTile(cellPosition);
     }
     public Vector3Int GetNextTargetCell(Vector2 direction)
     {
@@ -64,7 +65,10 @@ public class CharacterMovement : MonoBehaviour
         Vector2 nextMove = movementQueue.Dequeue();
         Vector3 targetPosition = transform.position + (Vector3)nextMove;
         Vector3Int targetCell = walkableTilemap.WorldToCell(targetPosition);
-
+        if (destructiblesTilemap.HasTile(currentCell))
+        {
+            destructiblesTilemap.SetTile(currentCell, null);
+        }
         // Perform the jump
         transform.DOJump(targetPosition, jumpHeight, 1, jumpDuration).OnComplete(() =>
         {
