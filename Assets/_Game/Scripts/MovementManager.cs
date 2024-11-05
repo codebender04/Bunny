@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,8 @@ using UnityEngine.TextCore.Text;
 public class MovementManager : MonoBehaviour
 {
     public static MovementManager Instance;
+    public event EventHandler OnCharactersMoved;
+
     private CharacterMovement[] characterMovementArray;
     private Dictionary<CharacterMovement, Vector3Int> nextCellDict = new Dictionary<CharacterMovement, Vector3Int>();
 
@@ -115,6 +118,7 @@ public class MovementManager : MonoBehaviour
                     character.Shake();
                     break;
                 case MovementType.Moveable:
+                    OnCharactersMoved?.Invoke(this, EventArgs.Empty);
                     character.ExecuteNextMove();
                     break;
                 case MovementType.FinishMovement:

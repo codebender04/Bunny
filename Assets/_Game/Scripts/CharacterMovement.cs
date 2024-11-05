@@ -15,7 +15,6 @@ public enum MovementType
 }
 public class CharacterMovement : MonoBehaviour
 {
-    public event EventHandler OnCharacterMoved;
     public event EventHandler OnCharacterFinishMovement;
     public event EventHandler OnCharacterDie;
 

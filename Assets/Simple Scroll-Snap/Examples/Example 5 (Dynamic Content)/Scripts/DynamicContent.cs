@@ -24,12 +24,6 @@ namespace DanielLochner.Assets.SimpleScrollSnap
         private void Awake()
         {
             gameInput.OnMovementKeyPressed += GameInput_OnMovementKeyPressed;
-            character.GetCharacterMovement().OnCharacterMoved += CharacterMovement_OnCharacterMoved;
-        }
-
-        private void CharacterMovement_OnCharacterMoved(object sender, EventArgs e)
-        {
-            RemoveFromBack();
         }
 
         private void GameInput_OnMovementKeyPressed(object sender, GameInput.OnMovementKeyPressedEventArgs e)

@@ -9,6 +9,7 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private Animator titleAnimator;
     [SerializeField] private Animator mainMenuAnimator;
     [SerializeField] private Button newGameButton;
+    [SerializeField] private GameObject levelSelectUI;
     [SerializeField] private float maxTimer;
     [SerializeField] private float minTimer;
     private float timer;
@@ -36,7 +37,7 @@ public class MainMenuUI : MonoBehaviour
     }
     public void LevelsButton()
     {
-
+        levelSelectUI.SetActive(true);
     }
     public void SettingsButton()
     {

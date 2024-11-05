@@ -21,6 +21,11 @@ public class ShakeOnMouseHover : MonoBehaviour
     {
         isMouseHovering = false;
     }
+    public void MouseClick()
+    {
+        isMouseHovering = false;
+        transform.DORotate(rotatingAngle, 0f);
+    }
     private void OnDestroy()
     {
         transform.DOKill();
