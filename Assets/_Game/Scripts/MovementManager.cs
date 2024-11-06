@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
+using UnityEngine.Tilemaps;
 public class MovementManager : MonoBehaviour
 {
     public static MovementManager Instance;
@@ -151,6 +152,7 @@ public class MovementManager : MonoBehaviour
             nextCellDict.Remove(character);
         }
     }
+
     public void ResetCellDict()
     {
         nextCellDict.Clear();

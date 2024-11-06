@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BrokenTile : MonoBehaviour
+public class SelfDestruct : MonoBehaviour
 {
     void Start()
     {

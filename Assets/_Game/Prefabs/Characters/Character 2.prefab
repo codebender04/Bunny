@@ -177,6 +177,7 @@ MonoBehaviour:
   decorativesTilemap: {fileID: 0}
   destructiblesTilemap: {fileID: 0}
   goalTile: {fileID: 11400000, guid: 6498b253c562a9c44a81e77a3f57ffe3, type: 2}
+  brokenTilePrefab: {fileID: 5509069053109866706, guid: cd63c82ef05a78140b2dba65d015c2e0, type: 3}
   ValidMovement: 0
   MovementType: 0
 --- !u!114 &7146235867674391952
