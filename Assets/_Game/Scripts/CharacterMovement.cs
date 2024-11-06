@@ -27,6 +27,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private Tilemap decorativesTilemap;
     [SerializeField] private Tilemap destructiblesTilemap;
     [SerializeField] private Tile goalTile;
+    [SerializeField] private GameObject brokenTilePrefab;
 
     public bool ValidMovement;
     public MovementType MovementType;
@@ -47,6 +48,14 @@ public class CharacterMovement : MonoBehaviour
         if (!isActivated) return;
         movementQueue.Enqueue(e.direction);
     }
+    private void CheckForBrokenTile()
+    {
+        if (destructiblesTilemap.HasTile(currentCell))
+        {
+            destructiblesTilemap.SetTile(currentCell, null);
+            Instantiate(brokenTilePrefab, currentCell + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
+        }
+    }
     public bool IsWalkable(Vector3Int cellPosition)
     {
         return walkableTilemap.HasTile(cellPosition) || destructiblesTilemap.HasTile(cellPosition);
@@ -64,10 +73,7 @@ public class CharacterMovement : MonoBehaviour
         Vector2 nextMove = movementQueue.Dequeue();
         Vector3 targetPosition = transform.position + (Vector3)nextMove;
         Vector3Int targetCell = walkableTilemap.WorldToCell(targetPosition);
-        if (destructiblesTilemap.HasTile(currentCell))
-        {
-            destructiblesTilemap.SetTile(currentCell, null);
-        }
+        CheckForBrokenTile();
         // Perform the jump
         transform.DOJump(targetPosition, jumpHeight, 1, jumpDuration).OnComplete(() =>
         {
@@ -81,6 +87,7 @@ public class CharacterMovement : MonoBehaviour
         Vector3Int targetCell = walkableTilemap.WorldToCell(targetPosition);
 
         movementQueue.Clear();
+        CheckForBrokenTile();
         // Perform the jump
         transform.DOJump(targetPosition, jumpHeight, 1, jumpDuration).OnComplete(() =>
         {
