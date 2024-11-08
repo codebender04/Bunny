@@ -47,14 +47,20 @@ public class Level : MonoBehaviour
             //GameManager.Instance.ActivateSignal();
             //Instantiate(goalSignalPrefab, characterMovement.GetCurrentCell() + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
 
-            Vector3Int tilePosition = goalSignalsTilemap.WorldToCell(characterMovement.transform.position);
-            TileBase tile = goalSignalsTilemap.GetTile(tilePosition);
+            //Vector3Int tilePosition = goalSignalsTilemap.WorldToCell(characterMovement.transform.position);
+            //TileBase tile = goalSignalsTilemap.GetTile(tilePosition);
 
-            if (tile is ToggleTile toggleTile)
-            {
-                toggleTile.ToggleState(tilePosition, goalSignalsTilemap);
-                //goalSignalsTilemap.RefreshTile(tilePosition);
-            }
+            //if (tile is ToggleTile toggleTile)
+            //{
+            //    toggleTile.ToggleState(tilePosition, goalSignalsTilemap);
+            //    goalSignalsTilemap.RefreshTile(tilePosition);
+            //}
+            //Vector3Int tilePosition = goalSignalsTilemap.WorldToCell(characterMovement.transform.position);
+            //Debug.Log(goalSignalsTilemap.GetInstantiatedObject(tilePosition));
+        }
+        if (TileManager.Instance.HasGoalSignalTile(characterMovement.GetCurrentCell()))
+        {
+            TileManager.Instance.ToggleTileState(characterMovement.GetCurrentCell());
         }
     }
 }

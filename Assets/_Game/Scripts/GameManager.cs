@@ -15,13 +15,10 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Character[] characterArray;
     [SerializeField] private Tilemap destructiblesTilemap;
-    [SerializeField] private Tilemap goalSignalsTilemap;
     [SerializeField] private Tile destructiblesTile;
 
     private List<Vector3Int> destructiblesPositionList;
     private int charactersFinishedMovement = 0;
-    private int totalNoOfGoalSignals;
-    private int activatedSignals = 0;
     private Character selectedCharacter;
     private bool levelHasEnded = false;
     private void Awake()
@@ -34,18 +31,6 @@ public class GameManager : MonoBehaviour
         GameInput.Instance.OnCharacterSelected += GameInput_OnCharacterSelected;
         GameInput.Instance.OnStartMovementSequence += GameInput_OnStartMovementSequence;
         GameInput.Instance.OnLevelRetried += GameInput_OnLevelRetried;
-
-
-        // Loop through each cell in the bounds and count the tiles
-        totalNoOfGoalSignals = 0;
-        foreach (var position in goalSignalsTilemap.cellBounds.allPositionsWithin)
-        {
-            // Check if there's a tile at the current position
-            if (goalSignalsTilemap.HasTile(position))
-            {
-                totalNoOfGoalSignals++;
-            }
-        }
 
         foreach (Character character in characterArray)
         {
@@ -74,14 +59,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-    public void ActivateSignal()
-    {
-        activatedSignals++;
-        if (activatedSignals >= totalNoOfGoalSignals)
-        {
-            Debug.Log("Activate Goals");
-        }
-    }
     private void GameInput_OnLevelRetried(object sender, EventArgs e)
     {
         levelHasEnded = false;
@@ -100,8 +77,8 @@ public class GameManager : MonoBehaviour
         foreach (Vector3Int tilePosition in destructiblesPositionList)
         {
             destructiblesTilemap.SetTile(tilePosition, destructiblesTile);
-            Debug.Log(tilePosition);
         }
+        TileManager.Instance.ResetAllTileState();
     }
     private void CharacterMovement_OnCharacterFinishMovement(object sender, System.EventArgs e)
     {
@@ -111,7 +88,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("All Characters Finished Movement");
             foreach (Character character in characterArray)
             {
-                if (!character.GetCharacterMovement().IsAtGoal())
+                if (!character.IsAtGoal())
                 {
                     DeactivateCharacterMovement();
                     levelHasEnded = true;

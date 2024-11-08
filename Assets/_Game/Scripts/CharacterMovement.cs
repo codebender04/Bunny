@@ -25,10 +25,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float shakeStrength = 0.1f;
     [SerializeField] private int shakeVibrato = 10;
     [SerializeField] private Tilemap walkableTilemap;
-    [SerializeField] private Tilemap decorativesTilemap;
     [SerializeField] private Tilemap destructiblesTilemap;
-    [SerializeField] private Tilemap signalTilemap;
-    [SerializeField] private Tile goalTile;
 
     public bool ValidMovement;
     public MovementType MovementType;
@@ -112,10 +109,6 @@ public class CharacterMovement : MonoBehaviour
             Debug.Log("FinishMovement");
         }
         isFirstStandStill = false;
-    }
-    public bool IsAtGoal()
-    {
-        return decorativesTilemap.GetTile(currentCell) == goalTile;
     }
     public void Activate()
     {
