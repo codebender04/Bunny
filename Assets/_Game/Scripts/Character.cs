@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 
 public class Character : MonoBehaviour
@@ -9,6 +10,7 @@ public class Character : MonoBehaviour
     [SerializeField] private CharacterClone clonePrefab;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject characterDeadDummy;
+    [SerializeField] private CharacterType characterType;
 
     private CharacterClone currentClone;
     private Queue<Vector2> movementBufferQueue = new Queue<Vector2>();
@@ -166,5 +168,10 @@ public class Character : MonoBehaviour
     public GameObject GetDeadDummy()
     {
         return characterDeadDummy;
+    }
+
+    public bool IsAtGoal()
+    {
+        return TileManager.Instance.HasGoalTile(characterMovement.GetCurrentCell(), characterType);
     }
 }

@@ -59,7 +59,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
     private void GameInput_OnLevelRetried(object sender, EventArgs e)
     {
         levelHasEnded = false;
@@ -78,8 +77,8 @@ public class GameManager : MonoBehaviour
         foreach (Vector3Int tilePosition in destructiblesPositionList)
         {
             destructiblesTilemap.SetTile(tilePosition, destructiblesTile);
-            Debug.Log(tilePosition);
         }
+        TileManager.Instance.ResetAllTileState();
     }
     private void CharacterMovement_OnCharacterFinishMovement(object sender, System.EventArgs e)
     {
@@ -89,7 +88,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("All Characters Finished Movement");
             foreach (Character character in characterArray)
             {
-                if (!character.GetCharacterMovement().IsAtGoal())
+                if (!character.IsAtGoal())
                 {
                     DeactivateCharacterMovement();
                     levelHasEnded = true;

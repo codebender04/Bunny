@@ -174,9 +174,7 @@ MonoBehaviour:
   shakeStrength: 0.1
   shakeVibrato: 20
   walkableTilemap: {fileID: 0}
-  decorativesTilemap: {fileID: 0}
   destructiblesTilemap: {fileID: 0}
-  goalTile: {fileID: 11400000, guid: 6498b253c562a9c44a81e77a3f57ffe3, type: 2}
   ValidMovement: 0
   MovementType: 0
 --- !u!114 &7146235867674391952
@@ -196,6 +194,7 @@ MonoBehaviour:
   clonePrefab: {fileID: 8316776307056669567, guid: 89544936e31a388489e539f4652f4e39, type: 3}
   spriteRenderer: {fileID: 1895203976426165283}
   characterDeadDummy: {fileID: 535567124872857270, guid: 4e2fe21b71bca0a428a4e3a4d83c57fa, type: 3}
+  characterType: 1
 --- !u!61 &8983334034166930451
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 373d952f968d49349ae1c3414663d676
+guid: 7c4d4b02d34c9c34fa339003e4a60048
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Goal Tile-Sheet_0
+      name: Goal Signal-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -111,14 +111,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2122e03ae63b13a45a2cfccf89c17362
-      internalID: 194506437
+      spriteID: 2e4e0e84a85f21e47989a6aaf98dde60
+      internalID: 1377940836
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Goal Tile-Sheet_1
+      name: Goal Signal-Sheet_1
       rect:
         serializedVersion: 2
         x: 16
@@ -132,14 +132,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 90102904f5ab6da43a658c2e5ba547e7
-      internalID: -236395464
+      spriteID: 93cf85205f52e674e97030f41adba267
+      internalID: -1560701993
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Goal Tile-Sheet_2
+      name: Goal Signal-Sheet_2
       rect:
         serializedVersion: 2
         x: 32
@@ -153,14 +153,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0e760b2011a75749869debea93b5a05
-      internalID: -493329507
+      spriteID: 4020764463652574e88aadbcd1d4eb83
+      internalID: 1885714329
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Goal Tile-Sheet_3
+      name: Goal Signal-Sheet_3
       rect:
         serializedVersion: 2
         x: 48
@@ -174,8 +174,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d9559781f4ce9f459fb76afae5b016d
-      internalID: 1696637886
+      spriteID: b14c399401ed7604994406eaeb1aa801
+      internalID: -2143597716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Goal Signal-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 269a646510656ff4f90076588267e6c6
+      internalID: 568341768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Goal Signal-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92daa9e0cf9d7324aaa20cd72735e573
+      internalID: -1782184319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Goal Signal-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d91016750ee05541a41162abeb29cb3
+      internalID: 1375679259
       vertices: []
       indices: 
       edges: []
@@ -191,10 +254,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Goal Tile-Sheet_0: 194506437
-      Goal Tile-Sheet_1: -236395464
-      Goal Tile-Sheet_2: -493329507
-      Goal Tile-Sheet_3: 1696637886
+      Goal Signal-Sheet_0: 1377940836
+      Goal Signal-Sheet_1: -1560701993
+      Goal Signal-Sheet_2: 1885714329
+      Goal Signal-Sheet_3: -2143597716
+      Goal Signal-Sheet_4: 568341768
+      Goal Signal-Sheet_5: -1782184319
+      Goal Signal-Sheet_6: 1375679259
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

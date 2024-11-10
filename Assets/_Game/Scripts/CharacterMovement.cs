@@ -6,6 +6,7 @@ using System.Collections;
 using static GameInput;
 using Unity.VisualScripting;
 using System;
+using UnityEngine.TextCore.Text;
 public enum MovementType
 {
     Invalid = 0,
@@ -24,10 +25,7 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] private float shakeStrength = 0.1f;
     [SerializeField] private int shakeVibrato = 10;
     [SerializeField] private Tilemap walkableTilemap;
-    [SerializeField] private Tilemap decorativesTilemap;
     [SerializeField] private Tilemap destructiblesTilemap;
-    [SerializeField] private Tile goalTile;
-    [SerializeField] private GameObject brokenTilePrefab;
 
     public bool ValidMovement;
     public MovementType MovementType;
@@ -36,25 +34,19 @@ public class CharacterMovement : MonoBehaviour
     private bool isActivated = true;
     private Vector3Int currentCell;
     private bool isFirstStandStill = true;
+    private Vector3Int targetCell;
     private void Start()
     {
         GameInput.Instance.OnMovementKeyPressed += GameInput_OnMovementKeyPressed;
 
         currentCell = walkableTilemap.WorldToCell(transform.position);
+        targetCell = walkableTilemap.WorldToCell(transform.position);
     }
 
     private void GameInput_OnMovementKeyPressed(object sender, OnMovementKeyPressedEventArgs e)
     {
         if (!isActivated) return;
         movementQueue.Enqueue(e.direction);
-    }
-    private void CheckForBrokenTile()
-    {
-        if (destructiblesTilemap.HasTile(currentCell))
-        {
-            destructiblesTilemap.SetTile(currentCell, null);
-            Instantiate(brokenTilePrefab, currentCell + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
-        }
     }
     public bool IsWalkable(Vector3Int cellPosition)
     {
@@ -72,23 +64,26 @@ public class CharacterMovement : MonoBehaviour
 
         Vector2 nextMove = movementQueue.Dequeue();
         Vector3 targetPosition = transform.position + (Vector3)nextMove;
-        Vector3Int targetCell = walkableTilemap.WorldToCell(targetPosition);
-        CheckForBrokenTile();
-        // Perform the jump
+        targetCell = walkableTilemap.WorldToCell(targetPosition);
+
+        Level.Instance.CheckBrokenTile(this);
+
         transform.DOJump(targetPosition, jumpHeight, 1, jumpDuration).OnComplete(() =>
         {
             currentCell = targetCell;
+            Level.Instance.CheckSignalTile(this);
         });
     }
     public void MoveAndDie()
     {
         Vector2 nextMove = movementQueue.Dequeue();
         Vector3 targetPosition = transform.position + (Vector3)nextMove;
-        Vector3Int targetCell = walkableTilemap.WorldToCell(targetPosition);
+        targetCell = walkableTilemap.WorldToCell(targetPosition);
+
+        Level.Instance.CheckBrokenTile(this);
 
         movementQueue.Clear();
-        CheckForBrokenTile();
-        // Perform the jump
+
         transform.DOJump(targetPosition, jumpHeight, 1, jumpDuration).OnComplete(() =>
         {
             currentCell = targetCell;
@@ -115,10 +110,6 @@ public class CharacterMovement : MonoBehaviour
         }
         isFirstStandStill = false;
     }
-    public bool IsAtGoal()
-    {
-        return decorativesTilemap.GetTile(currentCell) == goalTile;
-    }
     public void Activate()
     {
         isActivated = true;
@@ -134,6 +125,10 @@ public class CharacterMovement : MonoBehaviour
     public Vector3Int GetCurrentCell()
     {
         return currentCell;
+    }
+    public Vector3Int GetTargetCell()
+    {
+        return targetCell;
     }
     public void ClearMovement()
     {
