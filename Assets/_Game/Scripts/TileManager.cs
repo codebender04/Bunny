@@ -59,13 +59,17 @@ public class TileManager : MonoBehaviour
                 activatedSignal++;
             }
         }
-        if (activatedSignal == noOfSignals)
+        foreach (GoalTile tile in goalTileDict.Values)
         {
-            foreach (GoalTile tile in goalTileDict.Values)
+            if (activatedSignal == noOfSignals)
             {
                 tile.Unlock();
+                Debug.Log("Unlock Goal");
             }
-            Debug.Log("Unlock Goal");
+            else
+            {
+                tile.Lock();
+            }
         }
     }
     public void ResetAllTileState()

@@ -35,6 +35,12 @@ public class GoalTile : MonoBehaviour
         isUnlocked = true;
         animator.SetTrigger("Unlock");
     }
+    public void Lock()
+    {
+        if (!isUnlocked) return;
+        isUnlocked = false;
+        animator.SetTrigger("Lock");
+    }
     public bool IsUnlocked()
     {
         return isUnlocked;
