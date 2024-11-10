@@ -7,7 +7,6 @@ public class Level : MonoBehaviour
 {
     public static Level Instance;
 
-    [SerializeField] private Transform[] characterTransformArray;
 
     [SerializeField] private Tilemap walkableTilemap;
     [SerializeField] private Tilemap decorativesTilemap;
@@ -15,17 +14,22 @@ public class Level : MonoBehaviour
     [SerializeField] private Tilemap goalSignalsTilemap;
     [SerializeField] private Tile goalSignalTile;
     [SerializeField] private SelfDestruct brokenTilePrefab;
-    [SerializeField] private SelfDestruct goalSignalPrefab;
+    private Vector3[] characterPositionArray;
 
     private Animator animator;
     private void Start()
     {
         Instance = this;
         animator = GetComponent<Animator>();
+        characterPositionArray = new Vector3[GameManager.Instance.GetCharacterArray().Length];
+        for (int i = 0; i < characterPositionArray.Length; i++)
+        {
+            characterPositionArray[i] = GameManager.Instance.GetCharacterArray()[i].transform.position;
+        }
     }
-    public Transform[] GetStartingCharacterTransformArray()
+    public Vector3[] GetStartingCharacterPositionArray()
     {
-        return characterTransformArray;
+        return characterPositionArray;
     }
     public void FadeOut()
     {

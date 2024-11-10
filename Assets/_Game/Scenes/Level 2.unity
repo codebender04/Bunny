@@ -1791,16 +1791,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c917a20e826586468c60bf8ab0c2097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterTransformArray:
-  - {fileID: 4643699045088743414}
-  - {fileID: 1278884439}
   walkableTilemap: {fileID: 4348182951601567953}
   decorativesTilemap: {fileID: 5149746917722083246}
   destructiblesTilemap: {fileID: 812172371}
   goalSignalsTilemap: {fileID: 115136707}
   goalSignalTile: {fileID: 11400000, guid: 02dbdffebdab3754988298089764c022, type: 2}
   brokenTilePrefab: {fileID: -8507532557449110738, guid: cd63c82ef05a78140b2dba65d015c2e0, type: 3}
-  goalSignalPrefab: {fileID: -4417194110999060987, guid: bd10a8c09c12aa74180675ee1f0894e5, type: 3}
 --- !u!4 &2076987026217158930
 Transform:
   m_ObjectHideFlags: 0
@@ -2604,7 +2600,7 @@ Transform:
   m_GameObject: {fileID: 7964721588437577190}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5, y: -0.5, z: 0}
+  m_LocalPosition: {x: -0.5, y: 1.75, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

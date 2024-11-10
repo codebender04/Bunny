@@ -42,7 +42,7 @@ public class LevelManager : MonoBehaviour
     {
         for (int i = 0; i < characterArray.Length; i++)
         {
-            characterArray[i].transform.position = level.GetStartingCharacterTransformArray()[i].position;
+            characterArray[i].transform.position = level.GetStartingCharacterPositionArray()[i];
         }
     }
 }
