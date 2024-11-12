@@ -9,7 +9,7 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private Animator titleAnimator;
     [SerializeField] private Animator mainMenuAnimator;
     [SerializeField] private Button newGameButton;
-    [SerializeField] private GameObject levelSelectUI;
+    [SerializeField] private LevelSelectUI levelSelectUI;
     [SerializeField] private float maxTimer;
     [SerializeField] private float minTimer;
     private float timer;
@@ -37,7 +37,8 @@ public class MainMenuUI : MonoBehaviour
     }
     public void LevelsButton()
     {
-        levelSelectUI.SetActive(true);
+        levelSelectUI.gameObject.SetActive(true);
+        levelSelectUI.TransitIn();
     }
     public void SettingsButton()
     {
@@ -47,7 +48,7 @@ public class MainMenuUI : MonoBehaviour
     {
         titleAnimator.SetTrigger(Constant.ANIM_FADEOUT);
         yield return new WaitForSeconds(1.5f);
-        mainMenuAnimator.SetTrigger(Constant.ANIM_MAINMENU_TRANSITOUT);
+        mainMenuAnimator.SetTrigger(Constant.ANIM_TRANSITOUT);
         yield return new WaitForSeconds(1.5f);
         Loader.LoadLevel(1);
     }

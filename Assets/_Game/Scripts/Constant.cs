@@ -9,5 +9,5 @@ public static class Constant
     public const string ANIM_TITLE_WAVE = "Wave";
     public const string ANIM_FADEOUT = "FadeOut";
     public const string ANIM_FADEIN = "FadeIn";
-    public const string ANIM_MAINMENU_TRANSITOUT = "TransitOut";
+    public const string ANIM_TRANSITOUT = "TransitOut";
 }
