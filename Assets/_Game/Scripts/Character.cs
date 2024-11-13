@@ -22,8 +22,26 @@ public class Character : MonoBehaviour
     private void Start()
     {
         GameInput.Instance.OnMovementKeyPressed += GameInput_OnMovementKeyPressed;
+        GameInput.Instance.OnCharacterSelected += GameInput_OnCharacterSelected;
         characterMovement.OnCharacterFinishMovement += CharacterMovement_OnCharacterFinishMovement;
         characterMovement.OnCharacterDie += CharacterMovement_OnCharacterDie;
+    }
+
+    private void GameInput_OnCharacterSelected(object sender, GameInput.OnCharacterSelectedEventArgs e)
+    {
+        if (e.selectedCharacter == this)
+        {
+            characterVisual.SelectCharacter();
+        }
+    }
+
+    private void OnMouseEnter()
+    {
+        characterVisual.TurnOnOutline();
+    }
+    private void OnMouseExit()
+    {
+        characterVisual.TurnOffOutline();
     }
 
     private void CharacterMovement_OnCharacterDie(object sender, System.EventArgs e)

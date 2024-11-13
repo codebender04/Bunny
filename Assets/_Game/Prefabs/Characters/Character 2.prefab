@@ -121,6 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 7169966236198844095}
   characterMovement: {fileID: 3054129339158226406}
+  outlineMaterial: {fileID: 2100000, guid: 6d8ba9b5841aef14fac0efd24f76fb6e, type: 2}
 --- !u!1 &7362474859867132890
 GameObject:
   m_ObjectHideFlags: 0
@@ -130,9 +131,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1924697731504379674}
-  - component: {fileID: 3054129339158226406}
-  - component: {fileID: 7146235867674391952}
   - component: {fileID: 8983334034166930451}
+  - component: {fileID: 7146235867674391952}
+  - component: {fileID: 3054129339158226406}
   m_Layer: 0
   m_Name: Character 2
   m_TagString: Player
@@ -156,45 +157,6 @@ Transform:
   - {fileID: 3102101938076513008}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3054129339158226406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7362474859867132890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6228f6077b900d478f0b1063fbd468e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpHeight: 0.2
-  jumpDuration: 0.2
-  shakeDuration: 0.2
-  shakeStrength: 0.1
-  shakeVibrato: 20
-  walkableTilemap: {fileID: 0}
-  destructiblesTilemap: {fileID: 0}
-  ValidMovement: 0
-  MovementType: 0
---- !u!114 &7146235867674391952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7362474859867132890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5562bdb7d9692d741932e9a1acab9fa3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterMovement: {fileID: 3054129339158226406}
-  characterVisual: {fileID: 3674191373082896614}
-  clonePrefab: {fileID: 8316776307056669567, guid: 89544936e31a388489e539f4652f4e39, type: 3}
-  spriteRenderer: {fileID: 1895203976426165283}
-  characterDeadDummy: {fileID: 535567124872857270, guid: 4e2fe21b71bca0a428a4e3a4d83c57fa, type: 3}
-  characterType: 1
 --- !u!61 &8983334034166930451
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -240,3 +202,42 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6, y: 0.8}
   m_EdgeRadius: 0
+--- !u!114 &7146235867674391952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7362474859867132890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5562bdb7d9692d741932e9a1acab9fa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterMovement: {fileID: 3054129339158226406}
+  characterVisual: {fileID: 3674191373082896614}
+  clonePrefab: {fileID: 8316776307056669567, guid: 89544936e31a388489e539f4652f4e39, type: 3}
+  spriteRenderer: {fileID: 1895203976426165283}
+  characterDeadDummy: {fileID: 535567124872857270, guid: 4e2fe21b71bca0a428a4e3a4d83c57fa, type: 3}
+  characterType: 1
+--- !u!114 &3054129339158226406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7362474859867132890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6228f6077b900d478f0b1063fbd468e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpHeight: 0.2
+  jumpDuration: 0.2
+  shakeDuration: 0.2
+  shakeStrength: 0.1
+  shakeVibrato: 20
+  walkableTilemap: {fileID: 0}
+  destructiblesTilemap: {fileID: 0}
+  ValidMovement: 0
+  MovementType: 0
