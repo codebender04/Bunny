@@ -11,13 +11,13 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -232528124277667250}
-    m_Position: {x: 290, y: -80, z: 0}
+    m_Position: {x: 300, y: -80, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7893227438688624481}
     m_Position: {x: 30, y: 240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8621602432038593379}
-    m_Position: {x: 320, y: 90, z: 0}
+    m_Position: {x: 300, y: 70, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 3854940544544791395}
@@ -87,7 +87,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Goal Tile
+  m_Name: Goal Tile 1
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Unlock

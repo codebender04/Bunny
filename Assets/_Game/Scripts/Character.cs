@@ -190,6 +190,6 @@ public class Character : MonoBehaviour
 
     public bool IsAtGoal()
     {
-        return TileManager.Instance.HasGoalTile(characterMovement.GetCurrentCell(), characterType);
+        return TileManager.Instance.HasGoalTile(characterMovement.GetCurrentCell(), characterType) || !TileManager.Instance.HasGoal(characterType);
     }
 }

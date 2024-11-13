@@ -11,7 +11,6 @@ public class Level : MonoBehaviour
     [SerializeField] private Tilemap walkableTilemap;
     [SerializeField] private Tilemap decorativesTilemap;
     [SerializeField] private Tilemap destructiblesTilemap;
-    [SerializeField] private Tilemap goalSignalsTilemap;
     [SerializeField] private Tile goalSignalTile;
     [SerializeField] private SelfDestruct brokenTilePrefab;
     private Vector3[] characterPositionArray;
@@ -45,23 +44,6 @@ public class Level : MonoBehaviour
     }
     public void CheckSignalTile(CharacterMovement characterMovement)
     {
-        if (goalSignalsTilemap.HasTile(characterMovement.GetCurrentCell()))
-        {
-            //goalSignalsTilemap.SetTile(characterMovement.GetCurrentCell(), goalSignalTile);
-            //GameManager.Instance.ActivateSignal();
-            //Instantiate(goalSignalPrefab, characterMovement.GetCurrentCell() + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
-
-            //Vector3Int tilePosition = goalSignalsTilemap.WorldToCell(characterMovement.transform.position);
-            //TileBase tile = goalSignalsTilemap.GetTile(tilePosition);
-
-            //if (tile is ToggleTile toggleTile)
-            //{
-            //    toggleTile.ToggleState(tilePosition, goalSignalsTilemap);
-            //    goalSignalsTilemap.RefreshTile(tilePosition);
-            //}
-            //Vector3Int tilePosition = goalSignalsTilemap.WorldToCell(characterMovement.transform.position);
-            //Debug.Log(goalSignalsTilemap.GetInstantiatedObject(tilePosition));
-        }
         if (TileManager.Instance.HasGoalSignalTile(characterMovement.GetCurrentCell()))
         {
             TileManager.Instance.ToggleTileState(characterMovement.GetCurrentCell());

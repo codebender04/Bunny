@@ -36,10 +36,26 @@ public class TileManager : MonoBehaviour
     {
         return goalSignalTileDict.ContainsKey(cellPosition);
     }
+    public bool HasAnyGoalSignalTile()
+    {
+        return goalSignalTileDict.Count > 0;
+    }
     public bool HasGoalTile(Vector3Int cellPosition, CharacterType type)
     {
         return goalTileDict.ContainsKey(cellPosition) && goalTileDict[cellPosition].GetCharacterType() == type
             && goalTileDict[cellPosition].IsUnlocked();
+    }
+    public bool HasGoal(CharacterType type)
+    {
+        bool hasGoal = false;
+        foreach (var goalTile in goalTileDict.Values)
+        {
+            if (goalTile.GetCharacterType() == type)
+            {
+                hasGoal = true;
+            }
+        }
+        return hasGoal;
     }
     public GoalSignalTile GetGoalSignalTile(Vector3Int cellPosition)
     {

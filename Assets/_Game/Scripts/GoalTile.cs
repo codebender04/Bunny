@@ -6,6 +6,7 @@ public enum CharacterType
 {
     Green = 0,
     Purple = 1,
+    Orange = 2,
 }
 public class GoalTile : MonoBehaviour
 {
@@ -13,16 +14,18 @@ public class GoalTile : MonoBehaviour
     [SerializeField] private Sprite unlockedSprite;
     [SerializeField] private Sprite lockedSprite;
     private Animator animator;
+    private SpriteRenderer spriteRenderer;
     private bool originalState;
     private bool isUnlocked = false;
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     private void Start()
     {
         TileManager.Instance.AddGoalTile(transform.position, this);
-        isUnlocked = GetComponent<SpriteRenderer>().sprite == unlockedSprite;
+        isUnlocked = spriteRenderer.sprite == unlockedSprite;
         originalState = isUnlocked;
     }
     public CharacterType GetCharacterType()

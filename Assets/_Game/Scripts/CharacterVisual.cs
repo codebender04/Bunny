@@ -50,5 +50,6 @@ public class CharacterVisual : MonoBehaviour
     public void SelectCharacter()
     {
         animator.SetTrigger(Constant.ANIM_SELECT);
+        Invoke(nameof(PlayIdleAnimation), 0.2f);
     }
 }
