@@ -8,7 +8,6 @@ using static UnityEngine.Rendering.DebugUI;
 public class LevelSelectUI : MonoBehaviour
 {
     [SerializeField] private ShakeOnMouseHover returnText;
-    [SerializeField] private GameObject panel;
     [SerializeField] private Animator animator;
     [SerializeField] private Image[] levelButtons;
     [SerializeField] private Sprite completedSprite;

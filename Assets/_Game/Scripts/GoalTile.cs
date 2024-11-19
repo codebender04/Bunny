@@ -7,6 +7,7 @@ public enum CharacterType
     Green = 0,
     Purple = 1,
     Orange = 2,
+    Red = 3,
 }
 public class GoalTile : MonoBehaviour
 {
