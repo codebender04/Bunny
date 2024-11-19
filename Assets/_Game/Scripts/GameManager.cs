@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using static UnityEditor.FilePathAttribute;
 
@@ -85,7 +86,6 @@ public class GameManager : MonoBehaviour
         charactersFinishedMovement++;
         if (charactersFinishedMovement >= characterArray.Length)
         {
-            Debug.Log("All Characters Finished Movement");
             foreach (Character character in characterArray)
             {
                 if (!character.IsAtGoal())
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
                     return;
                 }
             }
-            Debug.Log("Finish Level!");
+            LevelManager.MarkLevelAsCompleted(SceneManager.GetActiveScene().buildIndex);
             OnLevelWon?.Invoke(this, EventArgs.Empty);
         }
     }

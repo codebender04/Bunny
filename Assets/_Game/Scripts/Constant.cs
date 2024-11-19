@@ -11,4 +11,5 @@ public static class Constant
     public const string ANIM_FADEOUT = "FadeOut";
     public const string ANIM_FADEIN = "FadeIn";
     public const string ANIM_TRANSITOUT = "TransitOut";
+    public const string PREFS_FINISHLEVELINDEX = "FinishLevelIndex";
 }
