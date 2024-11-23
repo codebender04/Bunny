@@ -5,9 +5,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static UnityEngine.Rendering.DebugUI;
 
-public class LevelSelectUI : MonoBehaviour
+public class LevelSelectUI : MonoBehaviour, ITransitOut
 {
-    [SerializeField] private ShakeOnMouseHover returnText;
     [SerializeField] private Animator animator;
     [SerializeField] private Image[] levelButtons;
     [SerializeField] private Sprite completedSprite;
@@ -22,15 +21,16 @@ public class LevelSelectUI : MonoBehaviour
             }
         }
     }
-    public void ReturnButton()
+    public void Return()
     {
-        returnText.MouseExit();
-        //TransitOut();
-        gameObject.SetActive(false);
+        StartCoroutine(nameof(TransitOut));
     }
-    private void TransitOut()
+    private IEnumerator TransitOut()
     {
         animator.SetTrigger(Constant.ANIM_TRANSITOUT);
+        yield return new WaitForSeconds(1f);
+
+        gameObject.SetActive(false);
     }
     public void TransitIn()
     {

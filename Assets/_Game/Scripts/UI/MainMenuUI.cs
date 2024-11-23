@@ -9,11 +9,34 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private Animator titleAnimator;
     [SerializeField] private Animator mainMenuAnimator;
     [SerializeField] private Button newGameButton;
+    [SerializeField] private Button levelsButton;
+    [SerializeField] private Button settingsButton;
     [SerializeField] private LevelSelectUI levelSelectUI;
     [SerializeField] private SettingsUI settingsUI;
     [SerializeField] private float maxTimer;
     [SerializeField] private float minTimer;
     private float timer;
+    private void Awake()
+    {
+        newGameButton.onClick.AddListener(() =>
+        {
+            StartCoroutine(LoadLevelCoroutine());
+            newGameButton.interactable = false;
+            SoundManager.Instance.PlayButtonClickSound();
+        });
+        levelsButton.onClick.AddListener(() =>
+        {
+            levelSelectUI.gameObject.SetActive(true);
+            levelSelectUI.TransitIn();
+            SoundManager.Instance.PlayButtonClickSound();
+        });
+        settingsButton.onClick.AddListener(() =>
+        {
+            settingsUI.gameObject.SetActive(true);
+            settingsUI.TransitIn();
+            SoundManager.Instance.PlayButtonClickSound();
+        });
+    }
     private void Start()
     {
         timer = Random.Range(minTimer, maxTimer);
@@ -30,21 +53,6 @@ public class MainMenuUI : MonoBehaviour
                 timer = Random.Range(minTimer, maxTimer);
             }
         }
-    }
-    public void NewGameButton()
-    {
-        StartCoroutine(LoadLevelCoroutine());
-        newGameButton.interactable = false;
-    }
-    public void LevelsButton()
-    {
-        levelSelectUI.gameObject.SetActive(true);
-        levelSelectUI.TransitIn();
-    }
-    public void SettingsButton()
-    {
-        settingsUI.gameObject.SetActive(true);
-        settingsUI.TransitIn();
     }
     private IEnumerator LoadLevelCoroutine()
     {

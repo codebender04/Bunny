@@ -20,6 +20,7 @@ public class GameInput : MonoBehaviour
     }
     public event EventHandler OnLevelRetried;
     public event EventHandler OnStartMovementSequence;
+    public event EventHandler OnLevelPaused;
     private PlayerInputActions playerInputActions;
     private void Awake()
     {
@@ -34,6 +35,7 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.LeftClick.performed += LeftClick_performed;
         playerInputActions.Player.StartMovementSequence.performed += StartMovementSequence_performed;
         playerInputActions.Player.RetryLevel.performed += RetryLevel_performed;
+        playerInputActions.Player.Pause.performed += Pause_performed;
     }
     private void OnDestroy()
     {
@@ -44,9 +46,15 @@ public class GameInput : MonoBehaviour
         playerInputActions.Player.LeftClick.performed -= LeftClick_performed;
         playerInputActions.Player.StartMovementSequence.performed -= StartMovementSequence_performed;
         playerInputActions.Player.RetryLevel.performed -= RetryLevel_performed;
+        playerInputActions.Player.Pause.performed -= Pause_performed;
 
         playerInputActions.Dispose();
     }
+    private void Pause_performed(InputAction.CallbackContext obj)
+    {
+        OnLevelPaused?.Invoke(this, EventArgs.Empty);
+    }
+
     private void RetryLevel_performed(InputAction.CallbackContext obj)
     {
         OnLevelRetried?.Invoke(this, EventArgs.Empty);

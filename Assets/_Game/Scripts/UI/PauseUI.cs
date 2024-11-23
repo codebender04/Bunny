@@ -20,5 +20,19 @@ public class PauseUI : MonoBehaviour
         {
             SceneManager.LoadScene(0);
         });
+        skipLevelButton.onClick.AddListener(() =>
+        {
+            Loader.LoadNextLevel();
+        });
+    }
+    private void Start()
+    {
+        GameInput.Instance.OnLevelPaused += GameInput_OnLevelPaused;
+        gameObject.SetActive(false);
+    }
+
+    private void GameInput_OnLevelPaused(object sender, System.EventArgs e)
+    {
+        gameObject.SetActive(!gameObject.activeSelf);
     }
 }
