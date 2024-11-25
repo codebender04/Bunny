@@ -11,8 +11,11 @@ public class Level : MonoBehaviour
     [SerializeField] private Tilemap walkableTilemap;
     [SerializeField] private Tilemap decorativesTilemap;
     [SerializeField] private Tilemap destructiblesTilemap;
+    [SerializeField] private Tilemap nonWalkablesTilemap;
     [SerializeField] private Tile goalSignalTile;
     [SerializeField] private SelfDestruct brokenTilePrefab;
+    [SerializeField] private SelfDestruct brokenTileWithEdgePrefab;
+    [SerializeField] private SelfDestruct brokenEdgePrefab;
     private Vector3[] characterPositionArray;
 
     private Animator animator;
@@ -38,8 +41,18 @@ public class Level : MonoBehaviour
     {
         if (destructiblesTilemap.HasTile(characterMovement.GetCurrentCell())) //Broken Tile
         {
-            destructiblesTilemap.SetTile(characterMovement.GetCurrentCell(), null);
-            Instantiate(brokenTilePrefab, characterMovement.GetCurrentCell() + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
+            if (nonWalkablesTilemap.HasTile(characterMovement.GetCurrentCell() + Vector3Int.down))
+            {
+                destructiblesTilemap.SetTile(characterMovement.GetCurrentCell(), null);
+                nonWalkablesTilemap.SetTile(characterMovement.GetCurrentCell() + Vector3Int.down, null);
+                Instantiate(brokenTileWithEdgePrefab, characterMovement.GetCurrentCell() + new Vector3(0.5f, 0.5f, 0), Quaternion.identity); 
+                Instantiate(brokenEdgePrefab, characterMovement.GetCurrentCell() + Vector3Int.down + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
+            }
+            else
+            {
+                destructiblesTilemap.SetTile(characterMovement.GetCurrentCell(), null);
+                Instantiate(brokenTilePrefab, characterMovement.GetCurrentCell() + new Vector3(0.5f, 0.5f, 0), Quaternion.identity);
+            }
         }
     }
     public void CheckSignalTile(CharacterMovement characterMovement)

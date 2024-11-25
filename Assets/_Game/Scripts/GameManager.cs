@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using static UnityEditor.FilePathAttribute;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,9 +17,12 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Character[] characterArray;
     [SerializeField] private Tilemap destructiblesTilemap;
-    [SerializeField] private Tile destructiblesTile;
+    [SerializeField] private Tilemap nonWalkablesTilemap;
+    [SerializeField] private Tile[] destructiblesTileArray;
+    [SerializeField] private Tile brokenEdgeTile;
 
     private List<Vector3Int> destructiblesPositionList;
+    private List<Vector3Int> brokenEdgePositionList;
     private int charactersFinishedMovement = 0;
     private Character selectedCharacter;
     private bool levelHasEnded = false;
@@ -26,6 +30,7 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         destructiblesPositionList = new List<Vector3Int>();
+        brokenEdgePositionList = new List<Vector3Int>();
     }
     private void Start()
     {
@@ -56,6 +61,10 @@ public class GameManager : MonoBehaviour
                 if (destructiblesTilemap.HasTile(localLocation))
                 {
                     destructiblesPositionList.Add(localLocation);
+                    if (nonWalkablesTilemap.HasTile(localLocation + Vector3Int.down))
+                    {
+                        brokenEdgePositionList.Add(localLocation + Vector3Int.down);
+                    }
                 }
             }
         }
@@ -77,7 +86,11 @@ public class GameManager : MonoBehaviour
         }
         foreach (Vector3Int tilePosition in destructiblesPositionList)
         {
-            destructiblesTilemap.SetTile(tilePosition, destructiblesTile);
+            destructiblesTilemap.SetTile(tilePosition, destructiblesTileArray[Random.Range(0, destructiblesTileArray.Length)]);
+        }
+        foreach (Vector3Int tilePosition in brokenEdgePositionList)
+        {
+            nonWalkablesTilemap.SetTile(tilePosition, brokenEdgeTile);
         }
         TileManager.Instance.ResetAllTileState();
     }

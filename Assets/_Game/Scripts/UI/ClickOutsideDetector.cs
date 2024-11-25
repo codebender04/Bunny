@@ -10,6 +10,7 @@ public class ClickOutsideDetector : MonoBehaviour
     private void Awake()
     {
         transitOut = panel.GetComponent<ITransitOut>();
+        if (transitOut == null) Debug.LogError("Object not implementing ITransitOut");
     }
     private void Update()
     {

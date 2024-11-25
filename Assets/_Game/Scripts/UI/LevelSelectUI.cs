@@ -20,6 +20,7 @@ public class LevelSelectUI : MonoBehaviour, ITransitOut
                 levelButtons[i].sprite = completedSprite;
             }
         }
+        gameObject.SetActive(false);
     }
     public void Return()
     {
@@ -28,7 +29,7 @@ public class LevelSelectUI : MonoBehaviour, ITransitOut
     private IEnumerator TransitOut()
     {
         animator.SetTrigger(Constant.ANIM_TRANSITOUT);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
 
         gameObject.SetActive(false);
     }

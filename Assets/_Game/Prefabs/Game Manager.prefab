@@ -47,5 +47,15 @@ MonoBehaviour:
   characterArray:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   destructiblesTilemap: {fileID: 0}
-  destructiblesTile: {fileID: 11400000, guid: 31a65ca61aacd9a438488bad8b91be90, type: 2}
+  nonWalkablesTilemap: {fileID: 0}
+  destructiblesTileArray:
+  - {fileID: 11400000, guid: 5c2871aae7b24d14ca913554074d4e5d, type: 2}
+  - {fileID: 11400000, guid: 6a7e4b9c6e828084c9d0f14e6b1c8c06, type: 2}
+  - {fileID: 11400000, guid: 79409cc7a26dc3b4d944df23539a6691, type: 2}
+  - {fileID: 11400000, guid: baf1d5cd794efdf4da0f9c4a38280f1e, type: 2}
+  - {fileID: 11400000, guid: 31a65ca61aacd9a438488bad8b91be90, type: 2}
+  - {fileID: 11400000, guid: ac21b98603b465c4e95a8b4129a64a32, type: 2}
+  - {fileID: 11400000, guid: a19d15476c59dcc45bc6b6f7e0658fe9, type: 2}
+  brokenEdgeTile: {fileID: 11400000, guid: 78c3c916ba15f2b458bbdd32ef4a2877, type: 2}
