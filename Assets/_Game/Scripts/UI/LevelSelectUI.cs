@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class LevelSelectUI : MonoBehaviour, ITransitOut
     [SerializeField] private Animator animator;
     [SerializeField] private Image[] levelButtons;
     [SerializeField] private Sprite completedSprite;
+    private Action activateButton;
     private void Start()
     {
         for (int i = 0; i < levelButtons.Length; i++)
@@ -30,11 +32,12 @@ public class LevelSelectUI : MonoBehaviour, ITransitOut
     {
         animator.SetTrigger(Constant.ANIM_TRANSITOUT);
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
-
+        activateButton?.Invoke();
         gameObject.SetActive(false);
     }
-    public void TransitIn()
+    public void TransitIn(Action action)
     {
         animator.SetTrigger("TransitIn");
+        activateButton = action;
     }
 }

@@ -24,20 +24,16 @@ public class SoundManager : MonoBehaviour
 
     private void GameInput_OnCharacterSelected(object sender, GameInput.OnCharacterSelectedEventArgs e)
     {
-        PlaySound();
+        PlaySound(audioClipSO.testClip, transform.position, volume);
     }
 
     private void MovementManager_OnCharactersMoved(object sender, System.EventArgs e)
     {
-        PlaySound();
-    }
-    private void PlaySound()
-    {
-        AudioSource.PlayClipAtPoint(audioClipSO.testClip, transform.position);
+        PlaySound(audioClipSO.testClip, transform.position, volume);
     }
     public void PlayButtonClickSound()
     {
-        PlaySound();
+        PlaySound(audioClipSO.testClip, transform.position, volume);
     }
     private void PlaySound(AudioClip[] audioClipArray, Vector3 position, float volume = 1f)
     {
@@ -45,15 +41,12 @@ public class SoundManager : MonoBehaviour
     }
     private void PlaySound(AudioClip audioClip, Vector3 position, float volumeMultiplier = 1f)
     {
+        Debug.Log(volume);
         AudioSource.PlayClipAtPoint(audioClip, position, volume * volumeMultiplier);
     }
-    public void ChangeVolume()
+    public void SetVolume(float volume)
     {
-        volume += .1f;
-        if (volume > 1f)
-        {
-            volume = 0f;
-        }
+        this.volume = Mathf.Clamp01(volume);
         PlayerPrefs.SetFloat(PLAYER_PREFS_SOUND_EFFECTS_VOLUME, volume);
         PlayerPrefs.Save();
     }

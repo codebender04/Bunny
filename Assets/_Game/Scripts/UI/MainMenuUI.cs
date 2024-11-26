@@ -27,13 +27,21 @@ public class MainMenuUI : MonoBehaviour
         levelsButton.onClick.AddListener(() =>
         {
             levelSelectUI.gameObject.SetActive(true);
-            levelSelectUI.TransitIn();
+            levelsButton.interactable = false;
+            levelSelectUI.TransitIn(() =>
+            {
+                levelsButton.interactable = true;
+            });
             SoundManager.Instance.PlayButtonClickSound();
         });
         settingsButton.onClick.AddListener(() =>
         {
             settingsUI.gameObject.SetActive(true);
-            settingsUI.TransitIn();
+            settingsButton.interactable = false;
+            settingsUI.TransitIn(() => 
+            {
+                settingsButton.interactable = true;
+            });
             SoundManager.Instance.PlayButtonClickSound();
         });
     }

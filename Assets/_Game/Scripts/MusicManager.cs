@@ -23,14 +23,10 @@ public class MusicManager : MonoBehaviour
         volume = PlayerPrefs.GetFloat(PLAYER_PREFS_MUSIC_VOLUME, 0.2f);
         audioSource.volume = volume;
     }
-    public void ChangeVolume()
+    public void SetVolume(float volume)
     {
-        volume += .1f;
-        if (volume > 1f)
-        {
-            volume = 0f;
-        }
-        audioSource.volume = volume;
+        this.volume = Mathf.Clamp01(volume);
+        audioSource.volume = this.volume;
         PlayerPrefs.SetFloat(PLAYER_PREFS_MUSIC_VOLUME, volume);
         PlayerPrefs.Save();
     }
