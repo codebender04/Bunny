@@ -368,7 +368,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 163232233}
         m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
-        m_MethodName: Button
+        m_MethodName: SFXButton
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -515,7 +515,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 163232233}
         m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
-        m_MethodName: Button
+        m_MethodName: SFXButton
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -775,6 +775,7 @@ GameObject:
   - component: {fileID: 139609815}
   - component: {fileID: 139609814}
   - component: {fileID: 139609813}
+  - component: {fileID: 139609816}
   m_Layer: 5
   m_Name: Button (6)
   m_TagString: Untagged
@@ -844,7 +845,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 139609814}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 163232233}
+        m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
+        m_MethodName: MusicButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &139609814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -883,6 +896,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 139609811}
   m_CullTransparentMesh: 1
+--- !u!114 &139609816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 139609811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c777bca896a841a478f801b8b0138c42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeButtonSprite: {fileID: 21300000, guid: a943deb526e9ef84e8cec80fa1ab38a0, type: 3}
+  inactiveButtonSprite: {fileID: 21300000, guid: 1aa71d8b6b384814faecc36fe64809f3, type: 3}
 --- !u!1 &159183503
 GameObject:
   m_ObjectHideFlags: 0
@@ -895,6 +922,7 @@ GameObject:
   - component: {fileID: 159183507}
   - component: {fileID: 159183506}
   - component: {fileID: 159183505}
+  - component: {fileID: 159183508}
   m_Layer: 5
   m_Name: Button (3)
   m_TagString: Untagged
@@ -964,7 +992,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 159183506}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 163232233}
+        m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
+        m_MethodName: MusicButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &159183506
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1003,6 +1043,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 159183503}
   m_CullTransparentMesh: 1
+--- !u!114 &159183508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159183503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c777bca896a841a478f801b8b0138c42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeButtonSprite: {fileID: 21300000, guid: a943deb526e9ef84e8cec80fa1ab38a0, type: 3}
+  inactiveButtonSprite: {fileID: 21300000, guid: 1aa71d8b6b384814faecc36fe64809f3, type: 3}
 --- !u!1 &163232227
 GameObject:
   m_ObjectHideFlags: 0
@@ -1126,6 +1180,17 @@ MonoBehaviour:
   - {fileID: 111204042}
   - {fileID: 1781113456}
   - {fileID: 82052262}
+  musicButtonArray:
+  - {fileID: 1761971359}
+  - {fileID: 406384005}
+  - {fileID: 318921138}
+  - {fileID: 159183508}
+  - {fileID: 486389304}
+  - {fileID: 1435223903}
+  - {fileID: 139609816}
+  - {fileID: 1267450853}
+  - {fileID: 278606993}
+  - {fileID: 1491119260}
 --- !u!1 &189473432
 GameObject:
   m_ObjectHideFlags: 0
@@ -1351,7 +1416,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 163232233}
         m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
-        m_MethodName: Button
+        m_MethodName: SFXButton
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1498,7 +1563,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 163232233}
         m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
-        m_MethodName: Button
+        m_MethodName: SFXButton
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1749,7 +1814,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 163232233}
         m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
-        m_MethodName: Button
+        m_MethodName: SFXButton
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1823,6 +1888,7 @@ GameObject:
   - component: {fileID: 278606992}
   - component: {fileID: 278606991}
   - component: {fileID: 278606990}
+  - component: {fileID: 278606993}
   m_Layer: 5
   m_Name: Button (8)
   m_TagString: Untagged
@@ -1892,7 +1958,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 278606991}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 163232233}
+        m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
+        m_MethodName: MusicButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 8
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &278606991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1931,6 +2009,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 278606988}
   m_CullTransparentMesh: 1
+--- !u!114 &278606993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278606988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c777bca896a841a478f801b8b0138c42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeButtonSprite: {fileID: 21300000, guid: a943deb526e9ef84e8cec80fa1ab38a0, type: 3}
+  inactiveButtonSprite: {fileID: 21300000, guid: 1aa71d8b6b384814faecc36fe64809f3, type: 3}
 --- !u!1 &318921133
 GameObject:
   m_ObjectHideFlags: 0
@@ -1943,6 +2035,7 @@ GameObject:
   - component: {fileID: 318921137}
   - component: {fileID: 318921136}
   - component: {fileID: 318921135}
+  - component: {fileID: 318921138}
   m_Layer: 5
   m_Name: Button (2)
   m_TagString: Untagged
@@ -2012,7 +2105,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 318921136}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 163232233}
+        m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
+        m_MethodName: MusicButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &318921136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2051,6 +2156,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 318921133}
   m_CullTransparentMesh: 1
+--- !u!114 &318921138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318921133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c777bca896a841a478f801b8b0138c42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeButtonSprite: {fileID: 21300000, guid: a943deb526e9ef84e8cec80fa1ab38a0, type: 3}
+  inactiveButtonSprite: {fileID: 21300000, guid: 1aa71d8b6b384814faecc36fe64809f3, type: 3}
 --- !u!1 &385459793
 GameObject:
   m_ObjectHideFlags: 0
@@ -2270,6 +2389,7 @@ GameObject:
   - component: {fileID: 406384004}
   - component: {fileID: 406384003}
   - component: {fileID: 406384002}
+  - component: {fileID: 406384005}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -2339,7 +2459,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 406384003}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 163232233}
+        m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
+        m_MethodName: MusicButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &406384003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2378,6 +2510,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 406384000}
   m_CullTransparentMesh: 1
+--- !u!114 &406384005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406384000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c777bca896a841a478f801b8b0138c42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeButtonSprite: {fileID: 21300000, guid: a943deb526e9ef84e8cec80fa1ab38a0, type: 3}
+  inactiveButtonSprite: {fileID: 21300000, guid: 1aa71d8b6b384814faecc36fe64809f3, type: 3}
 --- !u!1 &409417122
 GameObject:
   m_ObjectHideFlags: 0
@@ -2722,6 +2868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverColor: {r: 0.17194732, g: 0.39223918, b: 0.5283019, a: 1}
+  clickedColor: {r: 0.0627451, g: 0.1882353, b: 0.2627451, a: 1}
 --- !u!1 &486389299
 GameObject:
   m_ObjectHideFlags: 0
@@ -2734,6 +2881,7 @@ GameObject:
   - component: {fileID: 486389303}
   - component: {fileID: 486389302}
   - component: {fileID: 486389301}
+  - component: {fileID: 486389304}
   m_Layer: 5
   m_Name: Button (4)
   m_TagString: Untagged
@@ -2803,7 +2951,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 486389302}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 163232233}
+        m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
+        m_MethodName: MusicButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &486389302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2842,6 +3002,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 486389299}
   m_CullTransparentMesh: 1
+--- !u!114 &486389304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 486389299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c777bca896a841a478f801b8b0138c42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeButtonSprite: {fileID: 21300000, guid: a943deb526e9ef84e8cec80fa1ab38a0, type: 3}
+  inactiveButtonSprite: {fileID: 21300000, guid: 1aa71d8b6b384814faecc36fe64809f3, type: 3}
 --- !u!1 &581711572
 GameObject:
   m_ObjectHideFlags: 0
@@ -3181,7 +3355,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 163232233}
         m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
-        m_MethodName: Button
+        m_MethodName: SFXButton
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4173,6 +4347,7 @@ GameObject:
   - component: {fileID: 1267450852}
   - component: {fileID: 1267450851}
   - component: {fileID: 1267450850}
+  - component: {fileID: 1267450853}
   m_Layer: 5
   m_Name: Button (7)
   m_TagString: Untagged
@@ -4242,7 +4417,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1267450851}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 163232233}
+        m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
+        m_MethodName: MusicButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1267450851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4281,6 +4468,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1267450848}
   m_CullTransparentMesh: 1
+--- !u!114 &1267450853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267450848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c777bca896a841a478f801b8b0138c42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeButtonSprite: {fileID: 21300000, guid: a943deb526e9ef84e8cec80fa1ab38a0, type: 3}
+  inactiveButtonSprite: {fileID: 21300000, guid: 1aa71d8b6b384814faecc36fe64809f3, type: 3}
 --- !u!1 &1435223898
 GameObject:
   m_ObjectHideFlags: 0
@@ -4293,6 +4494,7 @@ GameObject:
   - component: {fileID: 1435223902}
   - component: {fileID: 1435223901}
   - component: {fileID: 1435223900}
+  - component: {fileID: 1435223903}
   m_Layer: 5
   m_Name: Button (5)
   m_TagString: Untagged
@@ -4362,7 +4564,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1435223901}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 163232233}
+        m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
+        m_MethodName: MusicButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1435223901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4401,6 +4615,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1435223898}
   m_CullTransparentMesh: 1
+--- !u!114 &1435223903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435223898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c777bca896a841a478f801b8b0138c42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeButtonSprite: {fileID: 21300000, guid: a943deb526e9ef84e8cec80fa1ab38a0, type: 3}
+  inactiveButtonSprite: {fileID: 21300000, guid: 1aa71d8b6b384814faecc36fe64809f3, type: 3}
 --- !u!1 &1438060129
 GameObject:
   m_ObjectHideFlags: 0
@@ -4549,6 +4777,7 @@ GameObject:
   - component: {fileID: 1491119259}
   - component: {fileID: 1491119258}
   - component: {fileID: 1491119257}
+  - component: {fileID: 1491119260}
   m_Layer: 5
   m_Name: Button (9)
   m_TagString: Untagged
@@ -4618,7 +4847,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1491119258}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 163232233}
+        m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
+        m_MethodName: MusicButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 9
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1491119258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4657,6 +4898,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1491119255}
   m_CullTransparentMesh: 1
+--- !u!114 &1491119260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1491119255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c777bca896a841a478f801b8b0138c42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeButtonSprite: {fileID: 21300000, guid: a943deb526e9ef84e8cec80fa1ab38a0, type: 3}
+  inactiveButtonSprite: {fileID: 21300000, guid: 1aa71d8b6b384814faecc36fe64809f3, type: 3}
 --- !u!1 &1497805927
 GameObject:
   m_ObjectHideFlags: 0
@@ -5210,6 +5465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverColor: {r: 0.17254902, g: 0.39215687, b: 0.5294118, a: 1}
+  clickedColor: {r: 0.0627451, g: 0.1882353, b: 0.2627451, a: 1}
 --- !u!1 &1747561270
 GameObject:
   m_ObjectHideFlags: 0
@@ -5295,7 +5551,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 163232233}
         m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
-        m_MethodName: Button
+        m_MethodName: SFXButton
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5369,6 +5625,7 @@ GameObject:
   - component: {fileID: 1761971358}
   - component: {fileID: 1761971357}
   - component: {fileID: 1761971356}
+  - component: {fileID: 1761971359}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -5438,7 +5695,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1761971357}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 163232233}
+        m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
+        m_MethodName: MusicButton
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1761971357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5477,6 +5746,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1761971354}
   m_CullTransparentMesh: 1
+--- !u!114 &1761971359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761971354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c777bca896a841a478f801b8b0138c42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeButtonSprite: {fileID: 21300000, guid: a943deb526e9ef84e8cec80fa1ab38a0, type: 3}
+  inactiveButtonSprite: {fileID: 21300000, guid: 1aa71d8b6b384814faecc36fe64809f3, type: 3}
 --- !u!1 &1781113451
 GameObject:
   m_ObjectHideFlags: 0
@@ -5562,7 +5845,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 163232233}
         m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
-        m_MethodName: Button
+        m_MethodName: SFXButton
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5709,7 +5992,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 163232233}
         m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
-        m_MethodName: Button
+        m_MethodName: SFXButton
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5993,7 +6276,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 163232233}
         m_TargetAssemblyTypeName: SettingsUI, Assembly-CSharp
-        m_MethodName: Button
+        m_MethodName: SFXButton
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6190,6 +6473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverColor: {r: 0.17254902, g: 0.39215687, b: 0.5294118, a: 1}
+  clickedColor: {r: 0.0627451, g: 0.1882353, b: 0.2627451, a: 1}
 --- !u!1001 &2003177729
 PrefabInstance:
   m_ObjectHideFlags: 0
