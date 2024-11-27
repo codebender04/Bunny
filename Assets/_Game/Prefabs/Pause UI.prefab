@@ -271,7 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverColor: {r: 0.3647059, g: 0.7254902, b: 1, a: 1}
-  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  clickedColor: {r: 0.09620862, g: 0.28801948, b: 0.4339623, a: 1}
 --- !u!1 &2637133232303438299
 GameObject:
   m_ObjectHideFlags: 0
@@ -619,7 +619,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverColor: {r: 0.3647059, g: 0.7254902, b: 1, a: 1}
-  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  clickedColor: {r: 0.09803922, g: 0.2901961, b: 0.43529412, a: 1}
 --- !u!1 &8173120568012429004
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,7 +755,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverColor: {r: 0.36320752, g: 0.7246301, b: 1, a: 1}
-  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  clickedColor: {r: 0.09803922, g: 0.2901961, b: 0.43529412, a: 1}
 --- !u!1 &8317594092068412456
 GameObject:
   m_ObjectHideFlags: 0

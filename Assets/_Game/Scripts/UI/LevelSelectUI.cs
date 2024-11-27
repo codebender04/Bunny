@@ -12,7 +12,7 @@ public class LevelSelectUI : MonoBehaviour, ITransitOut
     [SerializeField] private Image[] levelButtons;
     [SerializeField] private Sprite completedSprite;
     private Action activateButton;
-    private void Start()
+    private void OnEnable()
     {
         for (int i = 0; i < levelButtons.Length; i++)
         {
@@ -22,7 +22,6 @@ public class LevelSelectUI : MonoBehaviour, ITransitOut
                 levelButtons[i].sprite = completedSprite;
             }
         }
-        gameObject.SetActive(false);
     }
     public void Return()
     {

@@ -6,4 +6,6 @@ using UnityEngine;
 public class AudioClipSO : ScriptableObject
 {
     public AudioClip testClip;
+    public AudioClip[] uiButtonClick;
+    public AudioClip[] footstep;
 }

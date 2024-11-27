@@ -20,7 +20,7 @@ public class MainMenuUI : MonoBehaviour
     {
         newGameButton.onClick.AddListener(() =>
         {
-            StartCoroutine(LoadLevelCoroutine());
+            LoadLevel(1);
             newGameButton.interactable = false;
             SoundManager.Instance.PlayButtonClickSound();
         });
@@ -62,12 +62,16 @@ public class MainMenuUI : MonoBehaviour
             }
         }
     }
-    private IEnumerator LoadLevelCoroutine()
+    private IEnumerator LoadLevelCoroutine(int levelIndex)
     {
         titleAnimator.SetTrigger(Constant.ANIM_FADEOUT);
         yield return new WaitForSeconds(1.5f);
         mainMenuAnimator.SetTrigger(Constant.ANIM_TRANSITOUT);
         yield return new WaitForSeconds(1.5f);
-        Loader.LoadLevel(1);
+        Loader.LoadLevel(levelIndex);
+    }
+    public void LoadLevel(int levelIndex)
+    {
+        StartCoroutine(LoadLevelCoroutine(levelIndex));
     }
 }

@@ -1857,7 +1857,7 @@ MonoBehaviour:
   walkableTilemap: {fileID: 4348182951601567953}
   decorativesTilemap: {fileID: 5149746917722083246}
   destructiblesTilemap: {fileID: 812172371}
-  nonWalkablesTilemap: {fileID: 0}
+  nonWalkablesTilemap: {fileID: 3682620667594855504}
   goalSignalTile: {fileID: 11400000, guid: 02dbdffebdab3754988298089764c022, type: 2}
   brokenTilePrefab: {fileID: -8507532557449110738, guid: cd63c82ef05a78140b2dba65d015c2e0, type: 3}
   brokenTileWithEdgePrefab: {fileID: 0}
@@ -2095,7 +2095,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5485430943594411079, guid: 1902b8b8fe5bea14e92c9c679d6c2561, type: 3}
       propertyPath: m_text
-      value: Twice
+      value: Plus
       objectReference: {fileID: 0}
     - target: {fileID: 5485430943594411079, guid: 1902b8b8fe5bea14e92c9c679d6c2561, type: 3}
       propertyPath: m_fontSize

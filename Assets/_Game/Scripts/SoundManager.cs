@@ -23,16 +23,16 @@ public class SoundManager : MonoBehaviour
 
     private void GameInput_OnCharacterSelected(object sender, GameInput.OnCharacterSelectedEventArgs e)
     {
-        PlaySound(audioClipSO.testClip, transform.position, volume);
+        PlaySound(audioClipSO.uiButtonClick, transform.position, volume);
     }
 
     private void MovementManager_OnCharactersMoved(object sender, System.EventArgs e)
     {
-        PlaySound(audioClipSO.testClip, transform.position, volume);
+        PlaySound(audioClipSO.footstep, transform.position, volume);
     }
     public void PlayButtonClickSound()
     {
-        PlaySound(audioClipSO.testClip, transform.position, volume);
+        PlaySound(audioClipSO.uiButtonClick, transform.position, volume);
     }
     private void PlaySound(AudioClip[] audioClipArray, Vector3 position, float volume = 1f)
     {

@@ -13,3 +13,11 @@ MonoBehaviour:
   m_Name: Audio Clip SO
   m_EditorClassIdentifier: 
   testClip: {fileID: 8300000, guid: 8aaf3a97bb722eb4a864ebe5689dba48, type: 3}
+  uiButtonClick:
+  - {fileID: 8300000, guid: f83fed2c4fc7ab54597a26a8e95f2e12, type: 3}
+  footstep:
+  - {fileID: 8300000, guid: 6aabf1cd90a63624a8c0a5f8172bf64c, type: 3}
+  - {fileID: 8300000, guid: 78371f8b817e8b74c8ed4724139b58a8, type: 3}
+  - {fileID: 8300000, guid: 8827dad5f48c9b945b719f1c20b86c40, type: 3}
+  - {fileID: 8300000, guid: 77a5244777402b1429819076743cd861, type: 3}
+  - {fileID: 8300000, guid: 8aaf3a97bb722eb4a864ebe5689dba48, type: 3}

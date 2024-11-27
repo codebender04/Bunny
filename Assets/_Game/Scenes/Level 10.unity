@@ -2215,7 +2215,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5485430943594411079, guid: 1902b8b8fe5bea14e92c9c679d6c2561, type: 3}
       propertyPath: m_text
-      value: Gun
+      value: Thrice
       objectReference: {fileID: 0}
     - target: {fileID: 5485430943594411079, guid: 1902b8b8fe5bea14e92c9c679d6c2561, type: 3}
       propertyPath: m_fontSize

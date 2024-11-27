@@ -30,6 +30,10 @@ public class LevelManager : MonoBehaviour
     }
     private void GameManager_OnLevelWon(object sender, System.EventArgs e)
     {
+        LoadNextLevel();
+    }
+    public void LoadNextLevel()
+    {
         StartCoroutine(nameof(LoadNextLevelCoroutine));
     }
     private IEnumerator LoadNextLevelCoroutine()

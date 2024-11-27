@@ -15,6 +15,7 @@ public class PauseUI : MonoBehaviour
         returnButton.onClick.AddListener(() =>
         {
             gameObject.SetActive(false);
+            SoundManager.Instance.PlayButtonClickSound();
         });
         backToMainMenuButton.onClick.AddListener(() =>
         {
@@ -22,7 +23,7 @@ public class PauseUI : MonoBehaviour
         });
         skipLevelButton.onClick.AddListener(() =>
         {
-            Loader.LoadNextLevel();
+            LevelManager.Instance.LoadNextLevel();
         });
     }
     private void Start()

@@ -2096,8 +2096,8 @@ MonoBehaviour:
   walkableTilemap: {fileID: 7237153665043241126}
   decorativesTilemap: {fileID: 2256235487678410713}
   destructiblesTilemap: {fileID: 1048753781}
-  nonWalkablesTilemap: {fileID: 0}
-  goalSignalTile: {fileID: 0}
+  nonWalkablesTilemap: {fileID: 7720043104456127527}
+  goalSignalTile: {fileID: 11400000, guid: 23151c186d6eb2e4e99e1f733087decf, type: 2}
   brokenTilePrefab: {fileID: 0}
   brokenTileWithEdgePrefab: {fileID: 0}
   brokenEdgePrefab: {fileID: 0}
