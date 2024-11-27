@@ -12,7 +12,6 @@ public class AudioButton : MonoBehaviour
     private void Awake()
     {
         image = GetComponent<Image>();
-        isActive = image.sprite == activeButtonSprite;
     }
     public bool IsActive()
     {
@@ -21,6 +20,7 @@ public class AudioButton : MonoBehaviour
     public void SetActive(bool active)
     {
         isActive = active;
+        if (image != null)
         image.sprite = active ? activeButtonSprite : inactiveButtonSprite;
     }
 }

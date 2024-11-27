@@ -12,4 +12,6 @@ public static class Constant
     public const string ANIM_FADEIN = "FadeIn";
     public const string ANIM_TRANSITOUT = "TransitOut";
     public const string PREFS_FINISHLEVELINDEX = "FinishLevelIndex";
+    public const string PREFS_SOUND_EFFECTS_VOLUME = "SoundEffectsVolume";
+    public const string PREFS_MUSIC_VOLUME = "MusicVolume";
 }
