@@ -23,8 +23,14 @@ public class Character : MonoBehaviour
     {
         GameInput.Instance.OnMovementKeyPressed += GameInput_OnMovementKeyPressed;
         GameInput.Instance.OnCharacterSelected += GameInput_OnCharacterSelected;
+        GameInput.Instance.OnStartMovementSequence += GameInput_OnStartMovementSequence;
         characterMovement.OnCharacterFinishMovement += CharacterMovement_OnCharacterFinishMovement;
         characterMovement.OnCharacterDie += CharacterMovement_OnCharacterDie;
+    }
+
+    private void GameInput_OnStartMovementSequence(object sender, System.EventArgs e)
+    {
+        DestroyCurrentClone();
     }
 
     private void GameInput_OnCharacterSelected(object sender, GameInput.OnCharacterSelectedEventArgs e)

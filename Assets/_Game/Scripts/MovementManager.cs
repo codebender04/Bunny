@@ -92,6 +92,14 @@ public class MovementManager : MonoBehaviour
         {
             if (characterMovement.GetMovementQueue().Count > 0)
             {
+                if (!characterMovement.IsWalkable(nextCellDict[characterMovement]))
+                {
+                    characterMovement.MovementType = MovementType.MoveToDeath;
+                }
+                else
+                {
+                    characterMovement.MovementType = MovementType.Moveable;
+                }
                 Vector3Int currentCell = characterMovement.GetCurrentCell();
                 Vector3Int targetCell = nextCellDict[characterMovement];
 
@@ -107,17 +115,6 @@ public class MovementManager : MonoBehaviour
                     {
                         characterMovement.MovementType = MovementType.Invalid;
                         otherCharacter.MovementType = MovementType.Invalid;
-                    }
-                }
-                if (characterMovement.MovementType != MovementType.Invalid) 
-                { 
-                    if (!characterMovement.IsWalkable(nextCellDict[characterMovement]))
-                    {
-                        characterMovement.MovementType = MovementType.MoveToDeath;
-                    }
-                    else
-                    {
-                        characterMovement.MovementType = MovementType.Moveable;
                     }
                 }
             }
