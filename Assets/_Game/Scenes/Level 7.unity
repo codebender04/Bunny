@@ -613,7 +613,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8572392814636647790, guid: be2a7b5baf4ca094a904c88ec72cafe8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 8572392814636647790, guid: be2a7b5baf4ca094a904c88ec72cafe8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1969,11 +1969,11 @@ MonoBehaviour:
   walkableTilemap: {fileID: 4348182951601567953}
   decorativesTilemap: {fileID: 5149746917722083246}
   destructiblesTilemap: {fileID: 812172371}
-  nonWalkablesTilemap: {fileID: 0}
+  nonWalkablesTilemap: {fileID: 3682620667594855504}
   goalSignalTile: {fileID: 11400000, guid: 02dbdffebdab3754988298089764c022, type: 2}
   brokenTilePrefab: {fileID: -8507532557449110738, guid: cd63c82ef05a78140b2dba65d015c2e0, type: 3}
-  brokenTileWithEdgePrefab: {fileID: 0}
-  brokenEdgePrefab: {fileID: 0}
+  brokenTileWithEdgePrefab: {fileID: -8507532557449110738, guid: c8b7f3eef904ce04aab22fc139a4f204, type: 3}
+  brokenEdgePrefab: {fileID: -8507532557449110738, guid: 450f6e0b33ad6eb4dab875f806e51594, type: 3}
 --- !u!4 &2076987026217158930
 Transform:
   m_ObjectHideFlags: 0

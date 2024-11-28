@@ -1295,11 +1295,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5562bdb7d9692d741932e9a1acab9fa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1507257520 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7175982245129334354, guid: 07b40355770574144ac775e978a7a3da, type: 3}
-  m_PrefabInstance: {fileID: 1599304278}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1549926524 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2807039004305610270, guid: 1902b8b8fe5bea14e92c9c679d6c2561, type: 3}
@@ -1384,17 +1379,14 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7175982245129334354, guid: 07b40355770574144ac775e978a7a3da, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1599304283}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07b40355770574144ac775e978a7a3da, type: 3}
 --- !u!114 &1599304279 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3585662570943363502, guid: 07b40355770574144ac775e978a7a3da, type: 3}
   m_PrefabInstance: {fileID: 1599304278}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1507257520}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5562bdb7d9692d741932e9a1acab9fa3, type: 3}
@@ -1405,39 +1397,12 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8936124830432251100, guid: 07b40355770574144ac775e978a7a3da, type: 3}
   m_PrefabInstance: {fileID: 1599304278}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1507257520}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b6228f6077b900d478f0b1063fbd468e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!50 &1599304283
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1507257520}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &1738872557
 GameObject:
   m_ObjectHideFlags: 0
@@ -1860,8 +1825,8 @@ MonoBehaviour:
   nonWalkablesTilemap: {fileID: 3682620667594855504}
   goalSignalTile: {fileID: 11400000, guid: 02dbdffebdab3754988298089764c022, type: 2}
   brokenTilePrefab: {fileID: -8507532557449110738, guid: cd63c82ef05a78140b2dba65d015c2e0, type: 3}
-  brokenTileWithEdgePrefab: {fileID: 0}
-  brokenEdgePrefab: {fileID: 0}
+  brokenTileWithEdgePrefab: {fileID: -8507532557449110738, guid: c8b7f3eef904ce04aab22fc139a4f204, type: 3}
+  brokenEdgePrefab: {fileID: -8507532557449110738, guid: 450f6e0b33ad6eb4dab875f806e51594, type: 3}
 --- !u!4 &2076987026217158930
 Transform:
   m_ObjectHideFlags: 0
