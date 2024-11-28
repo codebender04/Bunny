@@ -92,13 +92,33 @@ public class MovementManager : MonoBehaviour
         {
             if (characterMovement.GetMovementQueue().Count > 0)
             {
-                if (!characterMovement.IsWalkable(nextCellDict[characterMovement]))
+                Vector3Int currentCell = characterMovement.GetCurrentCell();
+                Vector3Int targetCell = nextCellDict[characterMovement];
+
+                foreach (var otherCharacter in nonDuplicates)
                 {
-                    characterMovement.MovementType = MovementType.MoveToDeath;
+                    if (otherCharacter == characterMovement) continue;
+
+                    Vector3Int otherCurrentCell = otherCharacter.GetCurrentCell();
+                    Vector3Int otherTargetCell = nextCellDict[otherCharacter];
+
+                    // Detect cross-passing movement
+                    if (currentCell == otherTargetCell && targetCell == otherCurrentCell)
+                    {
+                        characterMovement.MovementType = MovementType.Invalid;
+                        otherCharacter.MovementType = MovementType.Invalid;
+                    }
                 }
-                else
-                {
-                    characterMovement.MovementType = MovementType.Moveable;
+                if (characterMovement.MovementType != MovementType.Invalid) 
+                { 
+                    if (!characterMovement.IsWalkable(nextCellDict[characterMovement]))
+                    {
+                        characterMovement.MovementType = MovementType.MoveToDeath;
+                    }
+                    else
+                    {
+                        characterMovement.MovementType = MovementType.Moveable;
+                    }
                 }
             }
             else
