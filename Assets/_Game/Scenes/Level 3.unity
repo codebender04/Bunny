@@ -388,18 +388,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2008332866714078091, guid: 86ed6c11e12786846b73a8cded14af71, type: 3}
-      propertyPath: characterMovementArray.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2008332866714078091, guid: 86ed6c11e12786846b73a8cded14af71, type: 3}
-      propertyPath: characterMovementArray.Array.data[0]
-      value: 
-      objectReference: {fileID: 1599304280}
-    - target: {fileID: 2008332866714078091, guid: 86ed6c11e12786846b73a8cded14af71, type: 3}
-      propertyPath: characterMovementArray.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 4915921504950507285, guid: 86ed6c11e12786846b73a8cded14af71, type: 3}
       propertyPath: m_Name
       value: Movement Manager
@@ -1362,17 +1350,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5562bdb7d9692d741932e9a1acab9fa3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1599304280 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8936124830432251100, guid: 07b40355770574144ac775e978a7a3da, type: 3}
-  m_PrefabInstance: {fileID: 1599304278}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6228f6077b900d478f0b1063fbd468e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1719905583
