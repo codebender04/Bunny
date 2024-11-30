@@ -13,7 +13,14 @@ public class GoalSignalTile : MonoBehaviour
     private void Start()
     {
         TileManager.Instance.AddGoalSignalTile(transform.position, this);
+        LevelManager.Instance.OnLoadNextLevel += LevelManager_OnLoadNextLevel;
     }
+
+    private void LevelManager_OnLoadNextLevel(object sender, System.EventArgs e)
+    {
+        animator.SetTrigger(Constant.ANIM_FADEOUT);
+    }
+
     public void ToggleState()
     {
         isActivated = !isActivated;
