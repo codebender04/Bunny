@@ -26,12 +26,23 @@ public class GoalTile : MonoBehaviour
     private void Start()
     {
         TileManager.Instance.AddGoalTile(transform.position, this);
+        LevelManager.Instance.OnLoadNextLevel += LevelManager_OnLoadNextLevel;
         isUnlocked = spriteRenderer.sprite == unlockedSprite;
         originalState = isUnlocked;
     }
+
+    private void LevelManager_OnLoadNextLevel(object sender, System.EventArgs e)
+    {
+        FadeOut();
+    }
+
     public CharacterType GetCharacterType()
     {
         return characterType;
+    }
+    private void FadeOut()
+    {
+        animator.SetTrigger(Constant.ANIM_FADEOUT);
     }
     public void Unlock()
     {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance;
+    public event EventHandler OnLoadNextLevel;
 
     [SerializeField] private Level level;
 
@@ -39,6 +41,7 @@ public class LevelManager : MonoBehaviour
     private IEnumerator LoadNextLevelCoroutine()
     {
         level.FadeOut();
+        OnLoadNextLevel?.Invoke(this, EventArgs.Empty);
         yield return new WaitForSeconds(2f);
         Loader.LoadNextLevel();
     }
