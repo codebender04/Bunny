@@ -158,6 +158,7 @@ public class Character : MonoBehaviour
     }
     public void SpawnCloneAtStep(int step)
     {
+        step -= 1; //Because I'm passing in the number of steb and need to get the index
         if (step > movementList.Count)
         {
             Debug.LogError("Spawn clone at step greater than list!");
@@ -175,7 +176,7 @@ public class Character : MonoBehaviour
     }
     public int GetHighestStep()
     {
-        return movementList.Count - 1; 
+        return movementList.Count; 
     }
     public Vector2 GetVisualOffset()
     {
