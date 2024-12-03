@@ -20,10 +20,13 @@ public class PauseUI : MonoBehaviour
         backToMainMenuButton.onClick.AddListener(() =>
         {
             SceneManager.LoadScene(0);
+            SoundManager.Instance.PlayButtonClickSound();
         });
         skipLevelButton.onClick.AddListener(() =>
         {
+            gameObject.SetActive(false);
             LevelManager.Instance.LoadNextLevel();
+            SoundManager.Instance.PlayButtonClickSound();
         });
     }
     private void Start()

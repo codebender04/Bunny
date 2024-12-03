@@ -72,6 +72,7 @@ public class GameManager : MonoBehaviour
     private void GameInput_OnLevelRetried(object sender, EventArgs e)
     {
         levelHasEnded = false;
+        charactersFinishedMovement = 0;
         characterArray[0].GetCharacterMovement().Activate();
         MovementManager.Instance.ResetCellDict();
         for (int i = 0; i < characterArray.Length; i++)
@@ -97,8 +98,10 @@ public class GameManager : MonoBehaviour
     private void CharacterMovement_OnCharacterFinishMovement(object sender, System.EventArgs e)
     {
         charactersFinishedMovement++;
-        if (charactersFinishedMovement >= characterArray.Length)
+        Debug.Log(charactersFinishedMovement);
+        if (charactersFinishedMovement == characterArray.Length)
         {
+            Debug.Log("done movement");
             foreach (Character character in characterArray)
             {
                 if (!character.IsAtGoal())

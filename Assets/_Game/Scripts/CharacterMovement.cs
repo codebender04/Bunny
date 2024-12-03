@@ -106,7 +106,6 @@ public class CharacterMovement : MonoBehaviour
         if (isFirstStandStill)
         {
             OnCharacterFinishMovement?.Invoke(this, EventArgs.Empty);
-            Debug.Log("FinishMovement");
         }
         isFirstStandStill = false;
     }
