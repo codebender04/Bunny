@@ -19,6 +19,7 @@ public class ClickOutsideDetector : MonoBehaviour
             Camera camera = targetCanvas?.renderMode == RenderMode.ScreenSpaceOverlay ? null : Camera.main;
             if (!RectTransformUtility.RectangleContainsScreenPoint(GetComponent<RectTransform>(), Input.mousePosition, camera))
             {
+                SoundManager.Instance.PlayButtonClickSound();
                 transitOut.Return();
             }
         }

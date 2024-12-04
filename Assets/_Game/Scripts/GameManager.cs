@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
-using static UnityEditor.FilePathAttribute;
 using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
