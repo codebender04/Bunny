@@ -4997,6 +4997,7 @@ MonoBehaviour:
   - {fileID: 802476364}
   - {fileID: 217579644}
   completedSprite: {fileID: 21300000, guid: a943deb526e9ef84e8cec80fa1ab38a0, type: 3}
+  incompletedSprite: {fileID: 21300000, guid: 1aa71d8b6b384814faecc36fe64809f3, type: 3}
 --- !u!114 &971192904
 MonoBehaviour:
   m_ObjectHideFlags: 0

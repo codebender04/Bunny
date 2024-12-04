@@ -11,6 +11,7 @@ public class LevelSelectUI : MonoBehaviour, ITransitOut
     [SerializeField] private Animator animator;
     [SerializeField] private Image[] levelButtons;
     [SerializeField] private Sprite completedSprite;
+    [SerializeField] private Sprite incompletedSprite;
     private Action activateButton;
     private void OnEnable()
     {
@@ -20,6 +21,10 @@ public class LevelSelectUI : MonoBehaviour, ITransitOut
             if (LevelManager.IsLevelCompleted(levelIndex))
             {
                 levelButtons[i].sprite = completedSprite;
+            }
+            else
+            {
+                levelButtons[i].sprite = incompletedSprite;
             }
         }
     }
